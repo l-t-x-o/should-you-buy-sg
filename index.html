@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Should You Buy? — Singapore Property Decision Tool</title>
+<meta name="description" content="Compare buying vs renting vs waiting in Singapore. Free wealth projection tool with year-by-year modeling.">
+<meta property="og:title" content="Should You Buy? — Singapore Property Decision Tool">
+<meta property="og:description" content="The biggest financial decision of your life deserves more than a gut feeling. Compare buying, renting, or waiting with year-by-year wealth projections. Free, no sign-up, Singapore-specific.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://YOUR-USERNAME.github.io/should-you-buy-sg/og-image.png">
+<meta property="og:url" content="https://YOUR-USERNAME.github.io/should-you-buy-sg/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Should You Buy? — SG Property Tool">
+<meta name="twitter:description" content="Compare buying vs renting vs waiting in Singapore. Free year-by-year wealth projection. No sign-up.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f8f6f1;--bg2:#f0ede6;--surface:#fff;--card:#fff;
+  --border:rgba(30,40,60,0.08);--border-s:rgba(30,40,60,0.14);
+  --text:#1a2035;--text2:#3d4663;--muted:#7a839b;--subtle:#b0b7c9;
+  --accent:#0d7c66;--accent-light:#e8f5f1;--accent-dark:#095e4d;
+  --blue:#2563eb;--blue-light:#eff4ff;
+  --orange:#e67e22;--orange-light:#fef4e8;
+  --red:#dc3545;--red-light:#fef0f0;
+  --green:#0d7c66;--green-light:#e8f5f1;
+  --purple:#7c3aed;--purple-light:#f3effe;
+  --shadow:0 1px 3px rgba(0,0,0,0.04),0 4px 12px rgba(0,0,0,0.03);
+  --shadow-lg:0 4px 20px rgba(0,0,0,0.06),0 1px 3px rgba(0,0,0,0.04);
+  --font-d:'Fraunces',Georgia,serif;--font-b:'Outfit',system-ui,sans-serif;
+  --r:12px;--r-sm:8px;
+}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:.9375rem;line-height:1.6;min-height:100dvh;overflow-x:hidden}
+input,select,button,summary{font-family:var(--font-b)}
+select option{background:var(--card)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--subtle);border-radius:4px}
+
+/* ══ LANDING ══ */
+.landing{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+.landing::before{content:'';position:absolute;top:-40%;right:-30%;width:80vw;height:80vw;border-radius:50%;background:radial-gradient(circle,rgba(13,124,102,0.06) 0%,transparent 70%);pointer-events:none}
+.landing::after{content:'';position:absolute;bottom:-30%;left:-20%;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.04) 0%,transparent 70%);pointer-events:none}
+.l-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding:.3rem .8rem;background:var(--accent-light);border-radius:999px;margin-bottom:1.5rem}
+.l-title{font-family:var(--font-d);font-size:clamp(2rem,7vw,3.2rem);font-weight:700;line-height:1.1;color:var(--text);margin-bottom:1rem;letter-spacing:-0.03em;max-width:520px}
+.l-title em{font-style:normal;color:var(--accent)}
+.l-sub{font-size:1rem;color:var(--text2);line-height:1.65;margin-bottom:2rem;max-width:440px}
+.l-features{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2.5rem;text-align:left;max-width:380px;width:100%}
+.l-feat{display:flex;align-items:flex-start;gap:.65rem;font-size:.875rem;color:var(--text2);line-height:1.5}
+.l-feat-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;margin-top:.05rem}
+.l-feat:nth-child(1) .l-feat-icon{background:var(--accent-light);color:var(--accent)}
+.l-feat:nth-child(2) .l-feat-icon{background:var(--blue-light);color:var(--blue)}
+.l-feat:nth-child(3) .l-feat-icon{background:var(--orange-light);color:var(--orange)}
+.l-feat:nth-child(4) .l-feat-icon{background:var(--purple-light);color:var(--purple)}
+.l-cta{padding:.85rem 2.5rem;border-radius:var(--r);font-size:1rem;font-weight:600;border:none;cursor:pointer;background:var(--accent);color:#fff;transition:all .2s;box-shadow:0 2px 12px rgba(13,124,102,0.25)}
+.l-cta:hover{background:var(--accent-dark);transform:translateY(-1px);box-shadow:0 4px 20px rgba(13,124,102,0.3)}
+.l-cta:active{transform:scale(0.98)}
+.l-time{font-size:.75rem;color:var(--muted);margin-top:.85rem}
+.l-trust{display:flex;gap:1.25rem;margin-top:2rem;font-size:.72rem;color:var(--subtle);font-weight:500}
+
+/* ══ HEADER ══ */
+.header{position:sticky;top:0;z-index:200;height:56px;background:rgba(248,246,241,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.25rem;gap:.75rem}
+.header.hidden{display:none}
+.brand{font-family:var(--font-d);font-size:1.1rem;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;color:var(--text);cursor:pointer}
+.brand em{font-style:normal;color:var(--accent);font-weight:700}
+.step-label{margin-left:auto;font-size:.72rem;color:var(--muted);white-space:nowrap;font-weight:500}
+.prog{display:flex;gap:3px;align-items:center;flex:1;max-width:160px;margin:0 auto}
+.prog-seg{flex:1;height:3px;border-radius:3px;background:var(--border-s);transition:background .35s}
+.prog-seg.done{background:var(--accent)}
+.prog-seg.active{background:var(--accent);opacity:.5}
+
+/* ══ WIZARD ══ */
+.app-wrap{display:none}
+.app-wrap.visible{display:block}
+.wizard-wrap{position:relative;overflow:hidden;min-height:calc(100dvh - 56px - 68px)}
+.step-panel{position:absolute;inset:0;overflow-y:auto;padding:1.5rem 1.25rem 140px;opacity:0;pointer-events:none;transform:translateX(30px);transition:opacity .3s ease,transform .3s ease}
+.step-panel.active{opacity:1;pointer-events:all;transform:translateX(0)}
+.step-panel.exit{opacity:0;transform:translateX(-30px)}
+.step-inner{max-width:640px;margin:0 auto}
+
+.s-tag{display:inline-flex;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;padding:.25rem .65rem;background:var(--accent-light);border-radius:999px}
+.s-title{font-family:var(--font-d);font-size:clamp(1.6rem,5vw,2.2rem);font-weight:600;line-height:1.15;color:var(--text);margin-bottom:.4rem;letter-spacing:-0.02em}
+.s-sub{font-size:.875rem;color:var(--text2);margin-bottom:1.75rem;line-height:1.6;max-width:520px}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;margin-bottom:.75rem;box-shadow:var(--shadow)}
+.card-label{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:.4rem}
+.card-label .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+.fg{display:grid;gap:.85rem}
+.fg-2{grid-template-columns:1fr 1fr}
+@media(max-width:520px){.fg-2{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:.25rem}
+.field>label{font-size:.78rem;font-weight:500;color:var(--text2)}
+.field input,.field select{background:var(--bg);border:1.5px solid var(--border-s);border-radius:var(--r-sm);color:var(--text);font-size:.9375rem;font-weight:500;padding:.6rem .85rem;width:100%;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(13,124,102,0.1)}
+.field input::placeholder{color:var(--subtle)}
+.f-hint{font-size:.7rem;color:var(--muted);line-height:1.4;margin-top:.1rem}
+.f-calc{font-size:.7rem;color:var(--accent);line-height:1.4;margin-top:.1rem;font-weight:500}
+
+/* ══ TOOLTIPS - tap-friendly ══ */
+.tip{position:relative;display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--border-s);color:var(--muted);font-size:.6rem;font-weight:700;cursor:pointer;margin-left:.3rem;vertical-align:middle;-webkit-tap-highlight-color:transparent}
+.tip-bubble{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--text);color:#fff;font-size:.72rem;font-weight:400;padding:.5rem .75rem;border-radius:8px;z-index:100;max-width:260px;white-space:normal;line-height:1.45;box-shadow:0 4px 16px rgba(0,0,0,0.2);pointer-events:auto;width:max-content}
+.tip-bubble::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--text)}
+.tip.open .tip-bubble{display:block}
+
+.toggle-group{display:flex;background:var(--bg);border:1.5px solid var(--border-s);border-radius:var(--r-sm);overflow:hidden}
+.toggle-group button{flex:1;padding:.55rem .5rem;border:none;background:transparent;color:var(--muted);font-size:.85rem;font-weight:500;cursor:pointer;transition:all .2s}
+.toggle-group button.active{background:var(--accent);color:#fff;font-weight:600}
+
+/* ══ PROPERTY ══ */
+.prop-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+@media(max-width:600px){.prop-grid{grid-template-columns:1fr}}
+.prop-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;box-shadow:var(--shadow);transition:border-color .3s}
+.prop-card.has-warn{border-color:rgba(230,126,34,0.35)}
+.prop-head{display:flex;align-items:center;gap:.5rem;margin-bottom:1.15rem}
+.prop-icon{width:32px;height:32px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.prop-icon.hdb{background:var(--blue-light);color:var(--blue)}
+.prop-icon.priv{background:var(--orange-light);color:var(--orange)}
+.prop-name{font-size:.9rem;font-weight:600;color:var(--text)}
+
+.more-toggle{font-size:.78rem;color:var(--accent);cursor:pointer;font-weight:500;padding:.5rem 0;display:flex;align-items:center;gap:.3rem;border:none;background:none;margin-top:.35rem}
+.more-toggle::before{content:'+';font-weight:700;font-size:.85rem;width:18px;height:18px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--accent-light);color:var(--accent)}
+.more-toggle.open::before{content:'\2212'}
+.more-fields{display:none;margin-top:.65rem}
+.more-fields.show{display:block}
+
+.feas-banner{margin-top:.75rem;padding:.6rem .85rem;border-radius:var(--r-sm);font-size:.78rem;line-height:1.45;font-weight:500;display:none}
+.feas-banner.show{display:block}
+.feas-banner.warn{background:var(--orange-light);color:#b45309;border:1px solid rgba(230,126,34,0.2)}
+.bridge-banner{margin-top:.75rem;padding:.6rem .85rem;border-radius:var(--r-sm);font-size:.78rem;line-height:1.45;background:var(--blue-light);color:#1e40af;border:1px solid rgba(37,99,235,0.15);display:none}
+.bridge-banner.show{display:block}
+
+.preset-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+.preset-btn{padding:.4rem 1rem;border-radius:999px;border:1.5px solid var(--border-s);background:transparent;color:var(--text2);font-size:.78rem;font-weight:500;cursor:pointer;transition:all .2s}
+.preset-btn:hover{border-color:var(--accent);color:var(--accent)}
+.preset-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+
+details.adv{margin-top:.5rem}
+details.adv>summary{font-size:.78rem;color:var(--accent);cursor:pointer;list-style:none;display:flex;align-items:center;gap:.35rem;user-select:none;padding:.5rem 0;font-weight:500}
+details.adv>summary::before{content:'+';font-size:.9rem;font-weight:600;width:18px;height:18px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--accent-light);color:var(--accent)}
+details.adv[open]>summary::before{content:'\2212'}
+details.adv .adv-grid{margin-top:.75rem}
+
+.nav-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(248,246,241,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:.75rem 1.25rem;display:flex;gap:.5rem;z-index:200}
+.nav-bar.hidden{display:none}
+.nav-bar.rmode{justify-content:center}
+.btn{padding:.65rem 1.5rem;border-radius:var(--r-sm);font-size:.875rem;font-weight:600;cursor:pointer;border:none;transition:all .18s;letter-spacing:.01em;white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark)}
+.btn-primary:active{transform:scale(0.98)}
+.btn-secondary{background:var(--bg);color:var(--text2);border:1.5px solid var(--border-s)}
+.btn-fill{flex:1}
+
+/* ══ RESULTS ══ */
+.verdict-card{position:relative;overflow:hidden;border-radius:var(--r);padding:1.75rem;margin-bottom:.85rem;border:1px solid var(--border);box-shadow:var(--shadow-lg)}
+.verdict-card.wait-wins{background:linear-gradient(135deg,#f0f4ff 0%,#fff 100%);border-color:rgba(37,99,235,0.15)}
+.verdict-card.rent-wins{background:linear-gradient(135deg,#f3effe 0%,#fff 100%);border-color:rgba(124,58,237,0.15)}
+.verdict-card.hdb-wins{background:linear-gradient(135deg,#e8f5f1 0%,#fff 100%);border-color:rgba(13,124,102,0.15)}
+.verdict-card.private-wins{background:linear-gradient(135deg,#fef4e8 0%,#fff 100%);border-color:rgba(230,126,34,0.15)}
+.v-tag{display:inline-flex;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .6rem;border-radius:999px;margin-bottom:.65rem}
+.wait-wins .v-tag{background:rgba(37,99,235,0.1);color:var(--blue)}
+.rent-wins .v-tag{background:rgba(124,58,237,0.1);color:var(--purple)}
+.hdb-wins .v-tag{background:rgba(13,124,102,0.1);color:var(--green)}
+.private-wins .v-tag{background:rgba(230,126,34,0.1);color:var(--orange)}
+.v-title{font-family:var(--font-d);font-size:clamp(1.4rem,4vw,1.9rem);font-weight:600;line-height:1.15;color:var(--text);margin-bottom:.55rem;letter-spacing:-0.02em}
+.v-desc{font-size:.85rem;color:var(--text2);line-height:1.6;margin-bottom:1.25rem;max-width:520px}
+.v-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.75rem}
+.v-kpi{display:flex;flex-direction:column;gap:.15rem}
+.v-kpi .kl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:500}
+.v-kpi .kv{font-size:1.05rem;font-weight:700;color:var(--text)}
+
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;margin-bottom:.85rem;box-shadow:var(--shadow)}
+.chart-title{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.chart-wrap{position:relative;width:100%;height:220px}
+.chart-wrap canvas{width:100%!important;height:100%!important}
+.chart-legend{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.75rem}
+.legend-item{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:var(--text2);font-weight:500}
+.legend-dot{width:10px;height:10px;border-radius:3px}
+
+.bar-rows{display:flex;flex-direction:column;gap:.6rem}
+.bar-row{display:flex;align-items:center;gap:.6rem}
+.bar-name{width:76px;font-size:.72rem;color:var(--text2);text-align:right;flex-shrink:0;line-height:1.3;font-weight:500}
+.bar-track{flex:1;height:28px;background:var(--bg);border-radius:6px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;transition:width .9s cubic-bezier(0.16,1,0.3,1);min-width:3px}
+.bar-fill.best{background:linear-gradient(90deg,var(--accent),#10a37f)}
+.bar-fill.ok{background:linear-gradient(90deg,var(--blue),#4e8eff)}
+.bar-fill.dim{background:var(--subtle);opacity:.5}
+.bar-val{font-size:.78rem;font-weight:700;color:var(--text);white-space:nowrap;min-width:80px}
+.bar-na{font-size:.72rem;color:var(--muted);font-style:italic;font-weight:400}
+
+.path-cards{display:flex;flex-direction:column;gap:.75rem;margin-bottom:.85rem}
+.path-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;box-shadow:var(--shadow)}
+.path-card.is-best{border-color:rgba(13,124,102,0.25);border-width:2px}
+.path-card.infeasible{opacity:.55}
+.pc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}
+.pc-name{font-size:.9375rem;font-weight:600;color:var(--text)}
+.pc-note{font-size:.78rem;color:var(--muted);margin-top:.1rem;line-height:1.45}
+.pill{font-size:.65rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;white-space:nowrap;flex-shrink:0;letter-spacing:.02em;text-transform:uppercase}
+.pill.good{background:var(--green-light);color:var(--green)}
+.pill.warn{background:var(--orange-light);color:var(--orange)}
+.pill.bad{background:var(--red-light);color:var(--red)}
+.pc-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem .75rem;margin-bottom:.7rem}
+@media(max-width:420px){.pc-metrics{grid-template-columns:repeat(2,1fr)}}
+.pc-m{display:flex;flex-direction:column;gap:.05rem}
+.pc-m .ml{font-size:.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+.pc-m .mv{font-size:.875rem;font-weight:600;color:var(--text)}
+.pc-warns{padding-top:.65rem;border-top:1px solid var(--border)}
+.pc-warn{font-size:.78rem;color:var(--text2);display:flex;align-items:flex-start;gap:.35rem;margin-bottom:.2rem;line-height:1.45}
+.pc-warn::before{content:'!';flex-shrink:0;width:16px;height:16px;border-radius:50%;background:var(--orange-light);color:var(--orange);font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:.1rem}
+
+.sens-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.85rem}
+@media(max-width:480px){.sens-grid{grid-template-columns:1fr}}
+.sens-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.15rem;box-shadow:var(--shadow)}
+.sens-title{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.sens-row{display:flex;justify-content:space-between;align-items:center;padding:.3rem 0;font-size:.78rem}
+.sens-row .sr-label{color:var(--text2)}
+.sr-winner{font-size:.65rem;padding:.1rem .4rem;border-radius:999px;font-weight:600}
+.sr-winner.w-wait{background:var(--blue-light);color:var(--blue)}
+.sr-winner.w-rent{background:var(--purple-light);color:var(--purple)}
+.sr-winner.w-hdb{background:var(--green-light);color:var(--green)}
+.sr-winner.w-private{background:var(--orange-light);color:var(--orange)}
+
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.85rem}
+@media(max-width:480px){.insight-grid{grid-template-columns:1fr}}
+.ins-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.15rem;box-shadow:var(--shadow)}
+.ins-title{font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem}
+.ins-text{font-size:.82rem;color:var(--text2);line-height:1.55}
+
+.reg-row{display:flex;align-items:center;justify-content:space-between;padding:.45rem 0;border-bottom:1px solid var(--border)}
+.reg-row:last-child{border-bottom:none}
+.reg-label{font-size:.8rem;color:var(--text2);font-weight:500}
+.reg-val{display:flex;align-items:center;gap:.4rem}
+.reg-pct{font-size:.82rem;font-weight:600}
+.reg-status{font-size:.6rem;font-weight:700;padding:.15rem .45rem;border-radius:999px;text-transform:uppercase;letter-spacing:.04em}
+.reg-status.pass{background:var(--green-light);color:var(--green)}
+.reg-status.fail{background:var(--red-light);color:var(--red)}
+
+.disclaimer{font-size:.7rem;color:var(--muted);text-align:center;padding:.75rem 0 .5rem;line-height:1.5}
+.attrib{text-align:center;padding:.5rem 0 2rem;font-size:.72rem;color:var(--subtle);line-height:1.6}
+.attrib a{color:var(--muted);text-decoration:underline;text-decoration-color:rgba(122,131,155,0.3);text-underline-offset:2px;transition:color .2s}
+.attrib a:hover{color:var(--accent)}
+.money{font-variant-numeric:tabular-nums}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp .4s ease both}.fu1{animation-delay:.05s}.fu2{animation-delay:.1s}.fu3{animation-delay:.15s}.fu4{animation-delay:.2s}.fu5{animation-delay:.25s}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.landing .l-feat{animation:fadeUp .5s ease both}
+.landing .l-feat:nth-child(1){animation-delay:.15s}
+.landing .l-feat:nth-child(2){animation-delay:.25s}
+.landing .l-feat:nth-child(3){animation-delay:.35s}
+.landing .l-feat:nth-child(4){animation-delay:.45s}
+.landing .l-cta{animation:fadeUp .5s ease both;animation-delay:.55s}
+
+@media(max-width:380px){.header{padding:0 .85rem}.step-panel{padding:1.25rem 1rem 140px}.v-kpis{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- ═══════ LANDING PAGE ═══════ -->
+<div class="landing" id="landing">
+  <div class="l-badge">Free tool for Singapore</div>
+  <h1 class="l-title">Should you <em>buy</em>, rent, or wait<em>?</em></h1>
+  <p class="l-sub">The biggest financial decision of your life deserves more than a gut feeling. See exactly how buying compares to renting or waiting, in dollars and cents, over time.</p>
+  <div class="l-features">
+    <div class="l-feat">
+      <div class="l-feat-icon">📊</div>
+      <div><strong>Four paths compared side by side.</strong> Stay with parents, rent, buy HDB, or buy condo. See which one leaves you wealthiest.</div>
+    </div>
+    <div class="l-feat">
+      <div class="l-feat-icon">📈</div>
+      <div><strong>Year-by-year wealth projection.</strong> Not just a single number. Watch how each path compounds over 5 to 20 years.</div>
+    </div>
+    <div class="l-feat">
+      <div class="l-feat-icon">⚖️</div>
+      <div><strong>Stress-tested with sensitivity analysis.</strong> See if the answer changes when assumptions shift. Fragile results get flagged.</div>
+    </div>
+    <div class="l-feat">
+      <div class="l-feat-icon">🔒</div>
+      <div><strong>Runs entirely on your device.</strong> No data is sent anywhere. No sign-up needed. No ads. Just honest math.</div>
+    </div>
+  </div>
+  <button class="l-cta" id="startBtn">Get started</button>
+  <p class="l-time">Takes about 3 minutes. All you need is a rough idea of your income, savings, and the properties you are considering.</p>
+  <div class="l-trust">
+    <span>No sign-up</span>
+    <span>100% free</span>
+    <span>Singapore-specific</span>
+  </div>
+  <div class="attrib" style="margin-top:1.5rem">Built by <a href="https://www.linkedin.com/in/leonard22/" target="_blank" rel="noopener">Leonard</a></div>
+</div>
+
+<!-- ═══════ APP ═══════ -->
+<div class="app-wrap" id="appWrap">
+
+<header class="header" id="appHeader">
+  <div class="brand" id="brandHome">Should You Buy<em>?</em></div>
+  <div class="prog" id="prog">
+    <div class="prog-seg active"></div>
+    <div class="prog-seg"></div>
+    <div class="prog-seg"></div>
+    <div class="prog-seg"></div>
+  </div>
+  <div class="step-label" id="stepLbl">1 / 4</div>
+</header>
+
+<div class="wizard-wrap" id="wizardWrap">
+
+<!-- ═══════ STEP 1: YOU ═══════ -->
+<div class="step-panel active" data-step="1">
+<div class="step-inner">
+  <div class="s-tag">Step 1 of 4</div>
+  <h1 class="s-title">About you.</h1>
+  <p class="s-sub">Your income, savings, and citizenship shape what is affordable and what each path costs. Approximate numbers are fine.</p>
+
+  <div class="card">
+    <div class="card-label"><span class="dot"></span> Profile</div>
+    <div class="fg fg-2">
+      <div class="field"><label>Age</label><input type="number" id="age" value="32" min="21" max="65" inputmode="numeric"></div>
+      <div class="field"><label>Citizenship</label>
+        <select id="citizenship"><option value="SC">Singapore Citizen</option><option value="SPR">Permanent Resident</option><option value="FOREIGNER">Foreigner</option></select>
+      </div>
+      <div class="field"><label>Residential properties owned</label><input type="number" id="propCount" value="0" min="0" max="5" inputmode="numeric">
+        <p class="f-hint">Affects ABSD. Enter 0 for a first purchase.</p>
+      </div>
+      <div class="field"><label>Marital status</label>
+        <select id="marital"><option value="single">Single</option><option value="married" selected>Married / engaged</option></select>
+        <p class="f-hint">Use combined household income if married.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label"><span class="dot"></span> Income</div>
+    <div class="fg fg-2">
+      <div class="field"><label>Gross monthly income (S$)<span class="tip" data-tip="Combined household income if married. This is your total income before CPF deductions.">?</span></label><input type="number" id="grossIncome" value="12000" step="100" inputmode="decimal"></div>
+      <div class="field"><label>Existing monthly debt (S$)<span class="tip" data-tip="Car loans, personal loans, student loans. Do not include housing costs.">?</span></label><input type="number" id="monthlyDebt" value="0" step="50" inputmode="decimal"></div>
+      <div class="field"><label>Monthly non-housing expenses (S$)</label><input type="number" id="monthlyLiving" value="3500" step="100" inputmode="decimal">
+        <p class="f-hint">Food, transport, insurance, childcare, everything except housing.</p>
+      </div>
+      <div class="field"><label>Annual salary growth (%)</label><input type="number" id="salaryGrowth" value="3" min="0" max="15" step="0.5" inputmode="decimal">
+        <p class="f-hint">3% is a reasonable Singapore baseline for mid-career professionals.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label"><span class="dot"></span> What you have</div>
+    <div class="fg fg-2">
+      <div class="field"><label>Cash savings (S$)<span class="tip" data-tip="Liquid cash in bank accounts only. Investments and CPF go in separate fields below.">?</span></label><input type="number" id="cash" value="350000" step="1000" inputmode="decimal"></div>
+      <div class="field"><label>CPF Ordinary Account (S$)</label><input type="number" id="cpfOA" value="60000" step="1000" inputmode="decimal">
+        <p class="f-hint">Check your CPF statement. Only the OA balance matters for property.</p>
+      </div>
+      <div class="field"><label>Investments (S$)<span class="tip" data-tip="Stocks, bonds, ETFs, robo-advisors, unit trusts, and other liquid investments you could potentially sell or keep growing.">?</span></label><input type="number" id="investments" value="0" step="1000" inputmode="decimal">
+        <p class="f-hint">Stocks, bonds, ETFs, robo-advisors, or unit trusts.</p>
+      </div>
+      <div class="field"><label>Cash out investments for the purchase?</label>
+        <div class="toggle-group" id="deployInvestToggle"><button data-val="no" class="active">No, keep invested</button><button data-val="yes">Yes, cash out</button></div>
+        <p class="f-hint">If kept invested, they grow at the market return rate. If cashed out, they add to your available funds for the down payment.</p>
+      </div>
+      <div class="field"><label>Emergency reserve to keep (S$)<span class="tip" data-tip="This stays liquid and untouched. Not used for property or investments. Think of it as your safety net.">?</span></label><input type="number" id="emergencyReserve" value="50000" step="1000" inputmode="decimal">
+        <p class="f-hint">A good rule of thumb is 6-12 months of total household expenses. If you spend S$3,500/mo on living and expect to pay S$2,000-4,000/mo on housing, aim for S$40,000 to S$80,000.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════ STEP 2: ALTERNATIVES ═══════ -->
+<div class="step-panel" data-step="2">
+<div class="step-inner">
+  <div class="s-tag">Step 2 of 4</div>
+  <h1 class="s-title">If you don't buy.</h1>
+  <p class="s-sub">The tool compares buying against two alternatives: staying with parents, or renting. These inputs matter just as much as the property itself.</p>
+
+  <div class="card">
+    <div class="card-label"><span class="dot"></span> Stay with parents or family</div>
+    <div class="field"><label>Can you realistically stay with parents?</label>
+      <div class="toggle-group" id="familyToggle"><button class="active" data-fam="yes">Yes, I can stay</button><button data-fam="no">Not an option</button></div>
+      <p class="f-hint">If yes, the tool models a 'wait and invest everything' path where your surplus cash goes straight into the market instead of housing.</p>
+    </div>
+    <div class="fg" style="margin-top:.85rem" id="familyCostWrap">
+      <div class="field"><label>Monthly contribution to household (S$)</label><input type="number" id="familyCost" value="500" step="50" inputmode="decimal">
+        <p class="f-hint">Groceries, utilities, parent allowance. Typically S$300-800.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label"><span class="dot"></span> Renting</div>
+    <div class="fg fg-2">
+      <div class="field"><label>Monthly rent (S$)</label><input type="number" id="monthlyRent" value="3800" step="50" inputmode="decimal">
+        <p class="f-hint">What you would actually pay if you rented instead of buying.</p>
+      </div>
+      <div class="field"><label>Move-in cost: deposit + agent (S$)</label><input type="number" id="moveInCost" value="11000" step="500" inputmode="decimal">
+        <p class="f-hint">Usually 2 months deposit + 1 month agent fee.</p>
+      </div>
+      <div class="field"><label>Expected annual rent increase (%)</label><input type="number" id="rentGrowth" value="3" min="0" max="10" step="0.5" inputmode="decimal">
+        <p class="f-hint">Singapore rents have typically risen 2-5% per year over the past decade.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════ STEP 3: PROPERTIES ═══════ -->
+<div class="step-panel" data-step="3">
+<div class="step-inner">
+  <div class="s-tag">Step 3 of 4</div>
+  <h1 class="s-title">The properties.</h1>
+  <p class="s-sub">Enter realistic shortlist numbers. Just the price, lease, and loan type are enough to start. Fine-tune the rest if you want.</p>
+
+  <div class="prop-grid">
+    <!-- HDB -->
+    <div class="prop-card" id="hdbCard">
+      <div class="prop-head"><div class="prop-icon hdb">🏢</div><div class="prop-name">Resale HDB</div></div>
+      <div class="fg" style="gap:.75rem">
+        <div class="field"><label>Price (S$)</label><input type="number" id="hdbPrice" value="780000" step="1000" inputmode="decimal" onchange="autoEstRent('hdb')"></div>
+        <div class="field"><label>Remaining lease (years)</label><input type="number" id="hdbLease" value="85" min="20" max="99" inputmode="numeric"></div>
+        <div class="field"><label>Loan type</label>
+          <select id="hdbLoanType"><option value="hdb" selected>HDB loan (2.6%)</option><option value="bank">Bank loan</option></select>
+        </div>
+        <div class="field"><label>Annual appreciation (%)<span class="tip" data-tip="Resale HDB has appreciated 2-3% per year on average over the past decade. This varies a lot by location, flat type, and remaining lease. Older-lease units tend to appreciate more slowly.">?</span></label>
+          <input type="number" id="hdbAppreciation" value="2.5" step="0.1" inputmode="decimal">
+        </div>
+      </div>
+      <button class="more-toggle" id="hdbMoreBtn" onclick="toggleMore('hdb')">More details (fees, reno, tax)</button>
+      <div class="more-fields" id="hdbMoreFields">
+        <div class="fg" style="gap:.75rem">
+          <div class="field"><label>Monthly S&CC (S$)</label><input type="number" id="hdbFees" value="90" step="5" inputmode="decimal">
+            <p class="f-hint">Service and conservancy charges. Typically S$60-120 for HDB.</p>
+          </div>
+          <div class="field"><label>Comparable monthly rent (S$)<span class="tip" data-tip="Used to auto-calculate your property tax. What would this flat rent for? Check PropertyGuru or HDB's portal for comparable units.">?</span></label>
+            <input type="number" id="hdbMarketRent" value="2800" step="50" inputmode="decimal" oninput="updatePropTax('hdb')">
+            <p class="f-calc" id="hdbTaxCalc"></p>
+          </div>
+          <div class="field"><label>Renovation (S$)<span class="tip" data-tip="Full reno for a 4-room HDB typically costs S$30,000-60,000. 5-room: S$40,000-80,000. ID-managed projects are usually on the higher end.">?</span></label>
+            <input type="number" id="hdbReno" value="45000" step="1000" inputmode="decimal">
+          </div>
+          <div class="field"><label>Legal + transaction costs (S$)<span class="tip" data-tip="Conveyancing (S$2,000-3,500), valuation fee, and admin charges. BSD is calculated automatically by the tool and should not be included here.">?</span></label>
+            <input type="number" id="hdbLegal" value="3500" step="100" inputmode="decimal">
+            <p class="f-hint">BSD is calculated separately by the tool.</p>
+          </div>
+        </div>
+      </div>
+      <div class="feas-banner" id="hdbFeasBanner"></div>
+    </div>
+
+    <!-- Private -->
+    <div class="prop-card" id="privCard">
+      <div class="prop-head"><div class="prop-icon priv">🏙️</div><div class="prop-name">Private Condo</div></div>
+      <div class="fg" style="gap:.75rem">
+        <div class="field"><label>Purchase type</label>
+          <select id="privType" onchange="togglePrivType()"><option value="resale" selected>Resale</option><option value="newlaunch">New launch</option><option value="balance">Balance unit</option></select>
+          <p class="f-hint">New launches and balance units require renting until TOP.</p>
+        </div>
+        <div id="topWrap" style="display:none">
+          <div class="fg fg-2" style="gap:.75rem;margin-top:.5rem">
+            <div class="field"><label>Years until move-in (TOP)</label><input type="number" id="privTopYears" value="3" min="1" max="7" inputmode="numeric">
+              <p class="f-hint">New launch: 3-4 years. Balance units: 1-2 years.</p>
+            </div>
+            <div class="field"><label>Monthly rent during the wait (S$)</label><input type="number" id="privBridgeRent" value="3500" step="50" inputmode="decimal"></div>
+          </div>
+          <div class="bridge-banner show">You will need to rent until the unit is completed. This cost is factored into the model as cash drag during the waiting period.</div>
+        </div>
+        <div class="field" style="margin-top:.5rem"><label>Price (S$)</label><input type="number" id="privPrice" value="1500000" step="1000" inputmode="decimal" onchange="autoEstRent('priv')"></div>
+        <div class="field"><label>Remaining lease (years)</label><input type="number" id="privLease" value="99" min="20" max="999" inputmode="numeric">
+          <p class="f-hint">Freehold = 999. New 99-year leasehold = 99.</p>
+        </div>
+        <div class="field"><label>Annual appreciation (%)<span class="tip" data-tip="Singapore private property has appreciated roughly 3-4% per year over the past 20 years, with significant cyclical swings. New launches may carry a developer premium that limits early gains. Resale condos in established areas tend to be steadier.">?</span></label>
+          <input type="number" id="privAppreciation" value="3" step="0.1" inputmode="decimal">
+        </div>
+      </div>
+      <button class="more-toggle" id="privMoreBtn" onclick="toggleMore('priv')">More details (fees, reno, tax)</button>
+      <div class="more-fields" id="privMoreFields">
+        <div class="fg" style="gap:.75rem">
+          <div class="field"><label>Monthly MCST (S$)</label><input type="number" id="privFees" value="400" step="10" inputmode="decimal">
+            <p class="f-hint">Maintenance and sinking fund. Typically S$250-600 depending on condo.</p>
+          </div>
+          <div class="field"><label>Comparable monthly rent (S$)<span class="tip" data-tip="Used to auto-calculate your property tax. What would this unit rent for? Check PropertyGuru for comparable units in the same project.">?</span></label>
+            <input type="number" id="privMarketRent" value="4500" step="50" inputmode="decimal" oninput="updatePropTax('priv')">
+            <p class="f-calc" id="privTaxCalc"></p>
+          </div>
+          <div class="field"><label>Renovation (S$)<span class="tip" data-tip="New condo: S$30,000-60,000. Resale condo: S$50,000-120,000+ depending on scope. ID-managed jobs cost more.">?</span></label>
+            <input type="number" id="privReno" value="60000" step="1000" inputmode="decimal">
+          </div>
+          <div class="field"><label>Legal + transaction costs (S$)<span class="tip" data-tip="Conveyancing (S$2,500-5,000), valuation, and admin. BSD is calculated automatically by the tool and should not be included here.">?</span></label>
+            <input type="number" id="privLegal" value="5000" step="100" inputmode="decimal">
+            <p class="f-hint">BSD is calculated separately by the tool.</p>
+          </div>
+        </div>
+      </div>
+      <div class="feas-banner" id="privFeasBanner"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════ STEP 4: HORIZON + ASSUMPTIONS ═══════ -->
+<div class="step-panel" data-step="4">
+<div class="step-inner">
+  <div class="s-tag">Step 4 of 4</div>
+  <h1 class="s-title">Horizon and assumptions.</h1>
+  <p class="s-sub">How long you hold changes everything. Pick your horizon, then choose a scenario preset. If the result flips when you switch presets, it is a fragile call.</p>
+
+  <div class="card">
+    <div class="card-label"><span class="dot"></span> Holding period</div>
+    <div class="fg fg-2">
+      <div class="field"><label>How many years will you hold?<span class="tip" data-tip="Property typically needs 7+ years to overcome transaction costs. For HDB, the minimum occupation period is 5 years. 10+ years smooths out cyclical swings.">?</span></label>
+        <select id="horizon"><option value="5">5 years</option><option value="7">7 years</option><option value="10" selected>10 years</option><option value="12">12 years</option><option value="15">15 years</option><option value="20">20 years</option></select>
+      </div>
+      <div class="field"><label>Expense inflation (% / year)</label><input type="number" id="inflation" value="3" min="0" max="10" step="0.5" inputmode="decimal">
+        <p class="f-hint">Inflates your non-housing living costs yearly. Singapore CPI averages roughly 2-3%.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label"><span class="dot"></span> Scenario preset</div>
+    <div class="preset-row" id="presetRow"></div>
+    <p class="f-hint">Each preset adjusts interest rates, market returns, and appreciation assumptions together. A result that only holds under 'Optimistic' is not one to bet on.</p>
+  </div>
+
+  <details class="adv card">
+    <summary>Fine-tune individual assumptions</summary>
+    <div class="fg fg-2 adv-grid">
+      <div class="field"><label>Bank mortgage rate (%)</label><input type="number" id="bankRate" value="3.5" min="0" max="15" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>HDB loan rate (%)</label><input type="number" id="hdbRate" value="2.6" min="0" max="10" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>Index fund return (% / year)<span class="tip" data-tip="Global equity (VWRA / IWDA) has returned 7-9% nominal over the long run. 6% is cautious, 9% is optimistic.">?</span></label><input type="number" id="investReturn" value="7" min="0" max="20" step="0.5" inputmode="decimal"></div>
+      <div class="field"><label>Bank loan tenure (years)</label><input type="number" id="bankTerm" value="30" min="1" max="35" inputmode="numeric"></div>
+      <div class="field"><label>HDB loan tenure (years)</label><input type="number" id="hdbTerm" value="25" min="1" max="25" inputmode="numeric"></div>
+      <div class="field"><label>Selling cost at exit (%)</label><input type="number" id="sellCost" value="2" min="0" max="8" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>Maintenance buffer (%)<span class="tip" data-tip="Extra monthly set-aside as % of fees for unexpected repairs, special levies, or en-bloc costs.">?</span></label><input type="number" id="mntShock" value="10" min="0" max="50" inputmode="numeric"></div>
+    </div>
+  </details>
+</div>
+</div>
+
+<!-- ═══════ RESULTS ═══════ -->
+<div class="step-panel" data-step="5" id="resultsPanel">
+<div class="step-inner" id="resultsInner"></div>
+</div>
+
+</div>
+
+<div class="nav-bar hidden" id="navBar">
+  <button class="btn btn-secondary" id="btnBack" style="display:none">Back</button>
+  <button class="btn btn-primary btn-fill" id="btnNext">Next</button>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════
+     CALCULATION ENGINE v3
+     ═══════════════════════════════════════ -->
+<script>
+(function(G){
+const n=v=>Number.isFinite(+v)?+v:0,max0=v=>Math.max(0,n(v)),round=(v,d=0)=>{const p=10**d;return Math.round(n(v)*p)/p};
+function money(v){const val=n(v);if(Math.abs(val)>=1e6)return'S$'+round(val/1e6,1)+'M';return new Intl.NumberFormat('en-SG',{style:'currency',currency:'SGD',maximumFractionDigits:0}).format(val)}
+function moneyFull(v){return new Intl.NumberFormat('en-SG',{style:'currency',currency:'SGD',maximumFractionDigits:0}).format(n(v))}
+function calcPropTax(monthlyRent){const av=n(monthlyRent)*12;const tiers=[[8000,0],[22000,.04],[10000,.05],[15000,.06],[15000,.07],[15000,.08],[15000,.09],[Infinity,.10]];let rem=av,tax=0;for(const[cap,rate]of tiers){const s=Math.min(rem,cap);if(s<=0)break;tax+=s*rate;rem-=s}return Math.round(tax/12)}
+function bsd(price){const tiers=[[180000,.01],[180000,.02],[640000,.03],[500000,.04],[1500000,.05],[Infinity,.06]];let rem=n(price),tot=0;for(const[cap,rate]of tiers){const s=Math.min(rem,cap);if(s<=0)break;tot+=s*rate;rem-=s}return Math.floor(tot)}
+function absdRate(cit,cnt){if(cit==='SC'){if(cnt<=0)return 0;if(cnt===1)return .20;return .30}if(cit==='SPR'){if(cnt<=0)return .05;if(cnt===1)return .30;return .35}return .60}
+function ssdRate(yrs){if(yrs<1)return .12;if(yrs<2)return .08;if(yrs<3)return .04;return 0}
+function pmt(pr,ar,yr){pr=n(pr);ar=n(ar);yr=n(yr);if(pr<=0||yr<=0)return 0;const r=ar/12,p=yr*12;if(r===0)return pr/p;return pr*r/(1-Math.pow(1+r,-p))}
+function loanBal(pr,ar,yr,yp){pr=n(pr);ar=n(ar);yr=n(yr);yp=n(yp);if(pr<=0)return 0;const pay=pmt(pr,ar,yr),r=ar/12,m=Math.min(yr*12,yp*12);if(r===0)return max0(pr-pay*m);return max0(pr*Math.pow(1+r,m)-pay*((Math.pow(1+r,m)-1)/r))}
+function fv(init,mo,ar,yr){init=n(init);mo=n(mo);ar=n(ar);yr=n(yr);const r=ar/12,p=yr*12;if(r===0)return init+mo*p;return init*Math.pow(1+r,p)+mo*((Math.pow(1+r,p)-1)/r)}
+function cpfBlocked(age,lease){return n(lease)<30||n(age)+n(lease)<=80}
+function cpfProrated(age,lease){return !cpfBlocked(age,lease)&&n(age)+n(lease)<95}
+function hdbLF(l){if(l>=85)return 1;if(l>=80)return .99;if(l>=75)return .97;if(l>=70)return .94;if(l>=65)return .89;if(l>=60)return .82;if(l>=55)return .72;if(l>=50)return .60;if(l>=45)return .47;if(l>=40)return .34;if(l>=35)return .22;if(l>=30)return .12;return .05}
+function privLF(l){if(l>=999)return 1;if(l>=85)return 1;if(l>=75)return .995;if(l>=65)return .975;if(l>=55)return .94;if(l>=45)return .86;if(l>=35)return .72;if(l>=25)return .54;return .35}
+function cpfFV(up,mo,r,yr){return n(up)*Math.pow(1+n(r),n(yr))+fv(0,n(mo),n(r),n(yr))}
+function comfort(mc,inc,feas){if(!feas)return{label:'Not feasible',tone:'bad'};const r=n(inc)>0?n(mc)/n(inc):1;if(r<=.25)return{label:'Comfortable',tone:'good'};if(r<=.35)return{label:'Moderate',tone:'warn'};return{label:'Stretched',tone:'bad'}}
+function tdsr(mort,debt,inc){const t=n(mort)+n(debt);const r=n(inc)>0?t/n(inc):1;return{ratio:round(r*100,1),pass:r<=.55}}
+function msr(mort,inc){const r=n(inc)>0?n(mort)/n(inc):1;return{ratio:round(r*100,1),pass:r<=.30}}
+function cpfOARate(age){if(age<=55)return .23;if(age<=60)return .15;if(age<=65)return .09;return .045}
+
+function simProperty(kind,prop,inp){
+  const p=inp.profile,a=inp.assumptions,warns=[];const isHdb=kind==='hdb';
+  const useHdbLoan=prop.loanType==='hdb';const rate=useHdbLoan?a.hdbLoanRate:a.bankRate;
+  const term=useHdbLoan?a.hdbLoanTermYears:a.bankLoanTermYears;const ltv=useHdbLoan?.80:.75;const minCashPct=useHdbLoan?0:.05;const hz=a.horizonYears;
+  const isNL=!isHdb&&(prop.purchaseType==='newlaunch'||prop.purchaseType==='balance');
+  const topWait=isNL?n(prop.topYears):0;const bridgeRent=isNL?n(prop.bridgeRent):0;
+  const blocked=cpfBlocked(p.age,prop.remainingLeaseYears);const prorated=cpfProrated(p.age,prop.remainingLeaseYears);
+  if(blocked)warns.push('CPF cannot be used. The remaining lease does not meet age-plus-lease requirements.');
+  else if(prorated)warns.push('CPF usage may be reduced. Remaining lease may not fully cover the borrower to age 95.');
+  const loan=n(prop.price)*ltv;const dp=n(prop.price)-loan;const minCash=n(prop.price)*minCashPct;
+  const cpfDown=blocked?0:Math.min(n(p.cpfOA),max0(dp-minCash));const cashDown=Math.max(0,dp-cpfDown);
+  const bsdAmt=bsd(prop.price);const absdAmt=(p.citizenship==='SC'&&p.propCount===0)?0:n(prop.price)*absdRate(p.citizenship,p.propCount);
+  const monthlyTax=calcPropTax(prop.marketRent);const bridgeTotal=bridgeRent*12*topWait;
+  const upfront=round(cashDown+bsdAmt+absdAmt+n(prop.legal)+n(prop.renovation)+bridgeTotal);
+  const upfrontCpf=round(cpfDown);const cashAvail=max0(n(p.cash)-n(p.emergencyReserve)+(p.deployInvestments?n(p.investments):0));
+  const moMort=pmt(loan,rate,term);const cpfCap=Math.min(n(p.grossIncome),8000);
+  const moCpf=blocked?0:Math.min(moMort,cpfCap*cpfOARate(p.age));
+  const tdsrC=tdsr(moMort,p.monthlyDebt,p.grossIncome);const msrC=isHdb&&useHdbLoan?msr(moMort,p.grossIncome):null;
+  if(!tdsrC.pass)warns.push(`TDSR breached at ${tdsrC.ratio}%. Banks will reject this loan. The limit is 55%.`);
+  if(msrC&&!msrC.pass)warns.push(`MSR breached at ${msrC.ratio}%. HDB loan will be rejected. The limit is 30%.`);
+  const mntSh=n(prop.monthlyFees)*n(a.maintenanceShockPct);
+  const moHous=round(max0(moMort-moCpf)+n(prop.monthlyFees)+monthlyTax+mntSh);
+  let feasible=cashAvail>=upfront;if(cashAvail<upfront)warns.push('Upfront cash required exceeds what you have after reserves.');
+  const moFree=round(n(p.grossIncome)-n(p.monthlyDebt)-n(p.monthlyLiving)-moHous);
+  if(moFree<0){feasible=false;warns.push('Monthly cashflow is negative after move-in.')}
+  if(isHdb&&hz<5)warns.push('Holding period is under the 5-year HDB minimum occupation period.');
+  if(!isHdb&&hz<3)warns.push('Selling within 3 years triggers Seller\'s Stamp Duty up to 12%.');
+  if(isNL&&topWait>=hz)warns.push('Holding period is shorter than the wait for TOP.');
+  if(isNL)warns.push(`Bridge rental of ${moneyFull(bridgeTotal)} over ${topWait} year${topWait>1?'s':''} is added to upfront costs.`);
+  const yearly=[];let initInv=max0(cashAvail-upfront)+(p.deployInvestments?0:n(p.investments));let port=initInv;
+  let gInc=n(p.grossIncome);let lExp=n(p.monthlyLiving);
+  for(let y=1;y<=hz;y++){
+    if(y>1){gInc*=(1+n(a.salaryGrowth));lExp*=(1+n(a.inflation))}
+    const inWait=y<=topWait;let mhc,mcp;
+    if(inWait){mhc=bridgeRent;mcp=0}else{mcp=blocked?0:Math.min(moMort,Math.min(gInc,8000)*cpfOARate(p.age+y-1));mhc=max0(moMort-mcp)+n(prop.monthlyFees)+monthlyTax+mntSh}
+    const mi=max0(gInc-n(p.monthlyDebt)-lExp-mhc);port=port*(1+n(a.investReturn)/12)**12+mi*12;
+    const eo=Math.max(0,y-topWait);const el=Math.max(0,n(prop.remainingLeaseYears)-y);
+    const lf=isHdb?hdbLF(el):privLF(el);const pv=n(prop.price)*Math.pow(1+n(prop.annualAppreciation),y)*lf;
+    const lb=loanBal(loan,rate,term,eo);const eq=max0(pv-lb);
+    yearly.push({year:y,portfolio:round(port),propVal:round(pv),loanBal:round(lb),equity:round(eq),totalWealth:round(port+eq+n(p.emergencyReserve)),moInvest:round(mi),moHousCash:round(mhc),grossIncome:round(gInc)});
+  }
+  const eo=Math.max(0,hz-topWait);const el=Math.max(0,n(prop.remainingLeaseYears)-hz);const lf=isHdb?hdbLF(el):privLF(el);
+  const sale=round(n(prop.price)*Math.pow(1+n(prop.annualAppreciation),hz)*lf);const sc=round(sale*n(a.sellingCostPct));
+  const ssd=isHdb?0:round(sale*ssdRate(eo));const lb=round(loanBal(loan,rate,term,eo));
+  const cpfT=round(cpfFV(cpfDown,moCpf,.025,eo));const pool=max0(sale-sc-ssd-lb);
+  const cpfR=round(Math.min(pool,cpfT));const cashP=round(max0(pool-cpfR));
+  const tw=round(yearly[yearly.length-1].portfolio+cashP+cpfR+n(p.emergencyReserve));
+  return{key:kind,title:isHdb?'Buy resale HDB':(isNL?`Buy ${prop.purchaseType==='balance'?'balance unit':'new launch'} condo`:'Buy resale condo'),feasible,warns,bsdAmt,absdAmt:round(absdAmt),upfront,upfrontCpf,moMortgage:round(moMort),moHousCash:moHous,moInvest:moFree,comfort:comfort(moHous,n(p.grossIncome),feasible),tdsrCheck:tdsrC,msrCheck:msrC,exitLease:el,salePrice:sale,sellCost:sc,ssdAmt:ssd,lbal:lb,cpfRef:cpfR,cashProc:cashP,totalWealth:tw,yearly,bea:null,bridgeTotalCost:bridgeTotal,note:isHdb?'Lower entry cost with stable demand. Lease depreciation is real at exit.':(isNL?'New launch premium may limit early gains. Bridge rental adds to cash drag.':'Higher capital outlay. Justified only if appreciation overcomes the larger cash drag.')};
+}
+
+function simWait(inp){
+  const p=inp.profile,a=inp.assumptions;const canStay=p.canStayWithFamily;
+  const ca=max0(n(p.cash)-n(p.emergencyReserve)+(p.deployInvestments?n(p.investments):0));
+  const hz=a.horizonYears;const yearly=[];let port=ca+(p.deployInvestments?0:n(p.investments));
+  let gi=n(p.grossIncome);let le=n(p.monthlyLiving);const fc=n(p.familyCost);
+  for(let y=1;y<=hz;y++){if(y>1){gi*=(1+n(a.salaryGrowth));le*=(1+n(a.inflation))}const mi=max0(gi-n(p.monthlyDebt)-le-fc);port=port*(1+n(a.investReturn)/12)**12+mi*12;yearly.push({year:y,portfolio:round(port),propVal:0,loanBal:0,equity:0,totalWealth:round(port+n(p.emergencyReserve)),moInvest:round(mi),moHousCash:round(fc),grossIncome:round(gi)})}
+  const tw=round(port+n(p.emergencyReserve));
+  return{key:'wait',title:'Stay with parents + invest',feasible:canStay,warns:canStay?['Only viable if staying with parents is genuinely sustainable long-term.']:['Not an option: you indicated this is not available.'],bsdAmt:0,absdAmt:0,upfront:0,upfrontCpf:0,moMortgage:0,moHousCash:round(fc),moInvest:round(max0(n(p.grossIncome)-n(p.monthlyDebt)-n(p.monthlyLiving)-fc)),comfort:{label:canStay?'Most flexible':'Unavailable',tone:canStay?'good':'bad'},tdsrCheck:{ratio:0,pass:true},msrCheck:null,exitLease:0,salePrice:0,sellCost:0,ssdAmt:0,lbal:0,cpfRef:0,cashProc:0,totalWealth:tw,yearly,bea:null,bridgeTotalCost:0,note:'Maximum liquidity. All surplus cash goes into market investments.'};
+}
+
+function simRent(inp){
+  const p=inp.profile,a=inp.assumptions;const ca=max0(n(p.cash)-n(p.emergencyReserve)+(p.deployInvestments?n(p.investments):0));
+  const hz=a.horizonYears;const yearly=[];let port=max0(ca-n(inp.rent.moveInCost))+(p.deployInvestments?0:n(p.investments));
+  let gi=n(p.grossIncome);let le=n(p.monthlyLiving);let rent=n(inp.rent.monthlyRent);
+  for(let y=1;y<=hz;y++){if(y>1){gi*=(1+n(a.salaryGrowth));le*=(1+n(a.inflation));rent*=(1+n(a.rentGrowth))}const mi=max0(gi-n(p.monthlyDebt)-le-rent);port=port*(1+n(a.investReturn)/12)**12+mi*12;yearly.push({year:y,portfolio:round(port),propVal:0,loanBal:0,equity:0,totalWealth:round(port+n(p.emergencyReserve)),moInvest:round(mi),moHousCash:round(rent),grossIncome:round(gi)})}
+  const tw=round(port+n(p.emergencyReserve));const mf=round(n(p.grossIncome)-n(p.monthlyDebt)-n(p.monthlyLiving)-n(inp.rent.monthlyRent));const feas=mf>=0;
+  return{key:'rent',title:'Rent + invest the rest',feasible:feas,warns:feas?['Flexibility is high, but rent escalates and builds zero equity.']:['Monthly cashflow is negative at this rent level.'],bsdAmt:0,absdAmt:0,upfront:round(n(inp.rent.moveInCost)),upfrontCpf:0,moMortgage:0,moHousCash:round(n(inp.rent.monthlyRent)),moInvest:mf,comfort:comfort(n(inp.rent.monthlyRent),n(p.grossIncome),feas),tdsrCheck:{ratio:0,pass:true},msrCheck:null,exitLease:0,salePrice:0,sellCost:0,ssdAmt:0,lbal:0,cpfRef:0,cashProc:0,totalWealth:tw,yearly,bea:null,bridgeTotalCost:0,note:'Preserves optionality. Works if rent is modest relative to income and surplus is invested consistently.'};
+}
+
+function compare(inp){
+  const a=inp.assumptions;const res=[simWait(inp),simRent(inp),simProperty('hdb',inp.hdb,inp),simProperty('private',inp.privateHome,inp)];
+  const waitW=res[0].totalWealth;
+  for(const it of res){if(it.key!=='hdb'&&it.key!=='private')continue;let lo=-.03,hi=.12;for(let i=0;i<30;i++){const mid=(lo+hi)/2;const c=JSON.parse(JSON.stringify(inp));if(it.key==='hdb')c.hdb.annualAppreciation=mid;else c.privateHome.annualAppreciation=mid;const t=simProperty(it.key,it.key==='hdb'?c.hdb:c.privateHome,c);if(t.totalWealth>=waitW)hi=mid;else lo=mid}it.bea=round(hi*100,1)}
+  const sens=runSens(inp);const sorted=[...res].sort((a,b)=>b.totalWealth-a.totalWealth);
+  const best=sorted[0],runner=sorted[1];const ls=res.reduce((a,c)=>(c.feasible&&c.moHousCash<a.moHousCash)?c:a,res.find(r=>r.feasible)||res[0]);
+  const gap=round(best.totalWealth-runner.totalWealth);let msg='',caut='',risk='';
+  if(best.key==='wait'){msg=`Staying with your parents and investing everything produces the strongest balance sheet at ${a.horizonYears} years. Every dollar of surplus compounds in the market instead of being locked into property.`;caut='This only holds if the monthly surplus is actually invested, not spent.';risk='If consistent investing is unlikely, this result is overstated.'}
+  else if(best.key==='rent'){msg=`Renting and investing the difference comes out ahead because it preserves more capital and monthly investing capacity than buying does under these assumptions.`;caut='Rent escalation erodes this over longer horizons. If rents rise faster than expected, the lead shrinks.';risk='Try changing the rent growth assumption to see how sensitive this is.'}
+  else if(best.key==='hdb'){msg=`Buying a resale HDB produces the strongest projected wealth outcome here, combining a manageable entry cost with stable property growth.`;caut='Remaining lease at exit matters more than most buyers expect. Older-lease flats face steep haircuts.';risk=`The HDB path needs at least ${best.bea!==null?best.bea+'%':''} annual appreciation to beat waiting and investing.`}
+  else{msg=`The private condo path leads because the appreciation assumption gives it enough upside to overcome substantially higher upfront costs.`;caut='This is the most assumption-sensitive path. A small change in appreciation or interest rates can flip the result.';risk=`Private needs roughly ${best.bea!==null?best.bea+'%':'sustained'} annual appreciation just to match the wait-and-invest baseline.`}
+  return{results:sorted,summary:{best,runner,lowStrain:ls,gap,msg,caution:caut,risk},sensitivity:sens};
+}
+
+function runSens(inp){
+  const s=[];
+  for(const r of[.05,.06,.07,.08,.09,.10]){const c=JSON.parse(JSON.stringify(inp));c.assumptions.investReturn=r;const q=qc(c);s.push({type:'return',label:`${round(r*100)}% market return`,winner:q.key})}
+  for(const h of[5,7,10,15,20]){const c=JSON.parse(JSON.stringify(inp));c.assumptions.horizonYears=h;const q=qc(c);s.push({type:'horizon',label:`${h}-year hold`,winner:q.key})}
+  return s;
+}
+function qc(inp){const p=[simWait(inp),simRent(inp),simProperty('hdb',inp.hdb,inp),simProperty('private',inp.privateHome,inp)];return p.reduce((a,c)=>(c.feasible&&c.totalWealth>a.totalWealth)?c:a,p[0])}
+function quickFeasibility(kind,inp){
+  const p=inp.profile,a=inp.assumptions,prop=kind==='hdb'?inp.hdb:inp.privateHome;const isHdb=kind==='hdb';
+  const uhl=prop.loanType==='hdb';const rate=uhl?a.hdbLoanRate:a.bankRate;const term=uhl?a.hdbLoanTermYears:a.bankLoanTermYears;
+  const ltv=uhl?.80:.75;const mcp=uhl?0:.05;const loan=n(prop.price)*ltv;const dp=n(prop.price)-loan;
+  const mc=n(prop.price)*mcp;const cd=Math.min(n(p.cpfOA),max0(dp-mc));const cashD=Math.max(0,dp-cd);
+  const bs=bsd(prop.price);const ab=(p.citizenship==='SC'&&p.propCount===0)?0:n(prop.price)*absdRate(p.citizenship,p.propCount);
+  const mt=calcPropTax(prop.marketRent);const isNL=!isHdb&&(prop.purchaseType==='newlaunch'||prop.purchaseType==='balance');
+  const bc=isNL?n(prop.bridgeRent)*12*n(prop.topYears):0;const up=cashD+bs+ab+n(prop.legal)+n(prop.renovation)+bc;
+  const ca=max0(n(p.cash)-n(p.emergencyReserve)+(p.deployInvestments?n(p.investments):0));const mm=pmt(loan,rate,term);
+  const cpf=Math.min(mm,Math.min(n(p.grossIncome),8000)*cpfOARate(p.age));const ms=n(prop.monthlyFees)*n(a.maintenanceShockPct);
+  const mh=max0(mm-cpf)+n(prop.monthlyFees)+mt+ms;const mf=n(p.grossIncome)-n(p.monthlyDebt)-n(p.monthlyLiving)-mh;
+  const issues=[];if(ca<up)issues.push(`Upfront cash short by ${moneyFull(up-ca)}.`);if(mf<0)issues.push(`Monthly cashflow negative by ${moneyFull(Math.abs(mf))}.`);
+  const td=tdsr(mm,p.monthlyDebt,p.grossIncome);if(!td.pass)issues.push(`TDSR at ${td.ratio}% exceeds 55%.`);
+  if(isHdb&&uhl){const m=msr(mm,p.grossIncome);if(!m.pass)issues.push(`MSR at ${m.ratio}% exceeds 30%.`)}
+  return issues;
+}
+G.Calc={compare,money,moneyFull,round,bsd,absdRate,ssdRate,n,calcPropTax,quickFeasibility};
+})(window);
+</script>
+
+<script>
+const TOTAL=4;let cur=1,preset='base';
+const PRESETS={cautious:{label:'Cautious',bankRate:.04,hdbRate:.026,investReturn:.06,hdbApp:.015,privApp:.02,mntShock:.15,sellCost:.025},base:{label:'Base case',bankRate:.035,hdbRate:.026,investReturn:.07,hdbApp:.025,privApp:.03,mntShock:.10,sellCost:.02},optimistic:{label:'Optimistic',bankRate:.03,hdbRate:.026,investReturn:.09,hdbApp:.03,privApp:.04,mntShock:.08,sellCost:.018}};
+
+// Tooltips: tap to toggle
+document.addEventListener('click',e=>{
+  const tip=e.target.closest('.tip');
+  document.querySelectorAll('.tip.open').forEach(t=>{if(t!==tip)t.classList.remove('open')});
+  if(tip)tip.classList.toggle('open');
+});
+
+// Create tooltip bubbles from data-tip
+document.querySelectorAll('.tip[data-tip]').forEach(t=>{
+  const b=document.createElement('div');b.className='tip-bubble';b.textContent=t.getAttribute('data-tip');t.appendChild(b);t.removeAttribute('data-tip');
+});
+
+function updatePropTax(kind){const r=parseFloat(document.getElementById(kind==='hdb'?'hdbMarketRent':'privMarketRent')?.value)||0;const t=Calc.calcPropTax(r);document.getElementById(kind==='hdb'?'hdbTaxCalc':'privTaxCalc').textContent=`Estimated property tax: S$${t}/mo (auto-calculated)`}
+function autoEstRent(kind){
+  const price=parseFloat(document.getElementById(kind==='hdb'?'hdbPrice':'privPrice')?.value)||0;
+  const yield_=kind==='hdb'?0.035:0.03;const estRent=Math.round(price*yield_/12/50)*50;
+  const el=document.getElementById(kind==='hdb'?'hdbMarketRent':'privMarketRent');if(el)el.value=estRent;updatePropTax(kind);
+}
+function togglePrivType(){document.getElementById('topWrap').style.display=(document.getElementById('privType').value==='resale')?'none':'block'}
+function toggleMore(kind){
+  const btn=document.getElementById(kind+'MoreBtn');const fields=document.getElementById(kind+'MoreFields');
+  const open=fields.classList.toggle('show');btn.classList.toggle('open',open);btn.textContent=open?'Hide details':'More details (fees, reno, tax)';
+}
+
+function updateFeasBanners(){
+  const st=readState();
+  ['hdb','priv'].forEach(kind=>{const k=kind==='priv'?'private':kind;const banner=document.getElementById(kind+'FeasBanner');const card=document.getElementById(kind+'Card');const issues=Calc.quickFeasibility(k,st);if(issues.length>0){banner.className='feas-banner show warn';banner.innerHTML='<strong>Heads up:</strong> '+issues.join(' ');card.classList.add('has-warn')}else{banner.className='feas-banner';banner.innerHTML='';card.classList.remove('has-warn')}});
+}
+let feasTimer;function debounceFeas(){clearTimeout(feasTimer);feasTimer=setTimeout(updateFeasBanners,400)}
+document.querySelectorAll('#hdbPrice,#hdbLease,#hdbLoanType,#hdbFees,#hdbMarketRent,#hdbReno,#hdbLegal,#privPrice,#privLease,#privFees,#privMarketRent,#privReno,#privLegal,#privType,#privTopYears,#privBridgeRent,#grossIncome,#monthlyDebt,#monthlyLiving,#cash,#cpfOA,#investments,#emergencyReserve,#age,#citizenship,#propCount').forEach(el=>{el.addEventListener('input',debounceFeas);el.addEventListener('change',debounceFeas)});
+
+function readState(){
+  const n=id=>{const el=document.getElementById(id);return el?parseFloat(el.value)||0:0};const s=id=>{const el=document.getElementById(id);return el?el.value:''};
+  const fb=document.querySelector('#familyToggle button.active');const db=document.querySelector('#deployInvestToggle button.active');
+  return{profile:{age:n('age'),citizenship:s('citizenship'),propCount:n('propCount'),grossIncome:n('grossIncome'),monthlyDebt:n('monthlyDebt'),monthlyLiving:n('monthlyLiving'),cash:n('cash'),cpfOA:n('cpfOA'),investments:n('investments'),deployInvestments:db?.dataset.val==='yes',emergencyReserve:n('emergencyReserve'),canStayWithFamily:fb?.dataset.fam==='yes',familyCost:n('familyCost')},
+  rent:{monthlyRent:n('monthlyRent'),moveInCost:n('moveInCost')},
+  hdb:{price:n('hdbPrice'),remainingLeaseYears:n('hdbLease'),loanType:s('hdbLoanType'),annualAppreciation:n('hdbAppreciation')/100,monthlyFees:n('hdbFees'),marketRent:n('hdbMarketRent'),renovation:n('hdbReno'),legal:n('hdbLegal')},
+  privateHome:{price:n('privPrice'),remainingLeaseYears:n('privLease'),loanType:'bank',purchaseType:s('privType'),topYears:n('privTopYears'),bridgeRent:n('privBridgeRent'),annualAppreciation:n('privAppreciation')/100,monthlyFees:n('privFees'),marketRent:n('privMarketRent'),renovation:n('privReno'),legal:n('privLegal')},
+  assumptions:{horizonYears:parseInt(s('horizon'))||10,bankRate:n('bankRate')/100,hdbLoanRate:n('hdbRate')/100,bankLoanTermYears:n('bankTerm')||30,hdbLoanTermYears:n('hdbTerm')||25,investReturn:n('investReturn')/100,sellingCostPct:n('sellCost')/100,maintenanceShockPct:n('mntShock')/100,salaryGrowth:n('salaryGrowth')/100,inflation:n('inflation')/100,rentGrowth:n('rentGrowth')/100,cpfAccruedRate:.025}};
+}
+
+function applyPreset(key){preset=key;const p=PRESETS[key];const set=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v};set('bankRate',(p.bankRate*100).toFixed(1));set('hdbRate',(p.hdbRate*100).toFixed(1));set('investReturn',(p.investReturn*100).toFixed(0));set('hdbAppreciation',(p.hdbApp*100).toFixed(1));set('privAppreciation',(p.privApp*100).toFixed(1));set('mntShock',(p.mntShock*100).toFixed(0));set('sellCost',(p.sellCost*100).toFixed(1));renderPresets()}
+function renderPresets(){const row=document.getElementById('presetRow');row.innerHTML=Object.entries(PRESETS).map(([k,p])=>`<button class="preset-btn${k===preset?' active':''}" data-pk="${k}">${p.label}</button>`).join('');row.querySelectorAll('[data-pk]').forEach(b=>b.addEventListener('click',()=>applyPreset(b.dataset.pk)))}
+function updateUI(){const isR=cur>TOTAL;document.getElementById('stepLbl').textContent=isR?'Results':`${cur} / ${TOTAL}`;document.querySelectorAll('.prog-seg').forEach((s,i)=>{s.classList.remove('done','active');if(isR||i+1<cur)s.classList.add('done');else if(i+1===cur)s.classList.add('active')});const bk=document.getElementById('btnBack'),nx=document.getElementById('btnNext'),nb=document.getElementById('navBar');bk.style.display=cur>1?'block':'none';nb.classList.toggle('rmode',isR);if(isR){nx.textContent='Adjust inputs';nx.className='btn btn-secondary btn-fill'}else if(cur===TOTAL){nx.textContent='Show my results';nx.className='btn btn-primary btn-fill'}else{nx.textContent='Next';nx.className='btn btn-primary btn-fill'}}
+function showPanel(step){document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active','exit'));const t=document.querySelector(`.step-panel[data-step="${step}"]`);if(t){t.classList.add('active');t.scrollTop=0}}
+function goNext(){if(cur===3)updateFeasBanners();if(cur===TOTAL){renderResults();cur=TOTAL+1}else if(cur>TOTAL){cur=1}else{cur++}showPanel(cur>TOTAL?5:cur);updateUI()}
+function goBack(){if(cur>TOTAL)cur=TOTAL;else if(cur>1)cur--;showPanel(cur);updateUI()}
+
+// Start app from landing
+document.getElementById('startBtn').addEventListener('click',()=>{document.getElementById('landing').style.display='none';document.getElementById('appWrap').classList.add('visible');document.getElementById('navBar').classList.remove('hidden');showPanel(1);updateUI()});
+document.getElementById('brandHome').addEventListener('click',()=>{if(cur>TOTAL){cur=1;showPanel(1);updateUI()}});
+
+// Toggle listeners
+document.querySelectorAll('#familyToggle button').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#familyToggle button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('familyCostWrap').style.display=btn.dataset.fam==='yes'?'grid':'none'})});
+document.querySelectorAll('#deployInvestToggle button').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#deployInvestToggle button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');debounceFeas()})});
+
+function drawChart(id,results,hz){const canvas=document.getElementById(id);if(!canvas)return;const ctx=canvas.getContext('2d');const dpr=window.devicePixelRatio||1;const rect=canvas.parentElement.getBoundingClientRect();canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;canvas.style.width=rect.width+'px';canvas.style.height=rect.height+'px';ctx.scale(dpr,dpr);const W=rect.width,H=rect.height,pad={t:20,r:16,b:35,l:56},cW=W-pad.l-pad.r,cH=H-pad.t-pad.b;const colors={wait:'#2563eb',rent:'#7c3aed',hdb:'#0d7c66',private:'#e67e22'};let mW=0;for(const r of results){if(!r.feasible)continue;for(const y of r.yearly){if(y.totalWealth>mW)mW=y.totalWealth}}mW=mW*1.08||1;ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);ctx.strokeStyle='rgba(0,0,0,0.06)';ctx.lineWidth=1;for(let i=0;i<=5;i++){const y=pad.t+cH-cH*(i/5);ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();ctx.fillStyle='#7a839b';ctx.font='500 10px Outfit,sans-serif';ctx.textAlign='right';const v=mW*(i/5);ctx.fillText(v>=1e6?(v/1e6).toFixed(1)+'M':(v/1e3).toFixed(0)+'K',pad.l-6,y+4)}ctx.textAlign='center';for(let yr=0;yr<=hz;yr+=Math.max(1,Math.floor(hz/6))){ctx.fillText('Y'+yr,pad.l+cW*(yr/hz),H-pad.b+18)}for(const r of results){if(!r.feasible||!r.yearly.length)continue;ctx.strokeStyle=colors[r.key];ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.beginPath();for(let i=0;i<r.yearly.length;i++){const x=pad.l+cW*((i+1)/hz),y=pad.t+cH-cH*(r.yearly[i].totalWealth/mW);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();const ly=r.yearly[r.yearly.length-1];ctx.fillStyle=colors[r.key];ctx.beginPath();ctx.arc(pad.l+cW,pad.t+cH-cH*(ly.totalWealth/mW),4,0,Math.PI*2);ctx.fill()}}
+
+function sname(k){return{wait:'Wait + invest',rent:'Rent + invest',hdb:'Resale HDB',private:'Private condo'}[k]||k}
+function wclass(k){return{wait:'w-wait',rent:'w-rent',hdb:'w-hdb',private:'w-private'}[k]||''}
+
+function renderResults(){
+  const st=readState(),{results,summary,sensitivity}=Calc.compare(st),best=summary.best,hz=st.assumptions.horizonYears,mxW=Math.max(...results.map(r=>r.totalWealth),1);
+  const bars=results.map(r=>{const w=Math.max(4,(r.totalWealth/mxW)*100);return`<div class="bar-row"><div class="bar-name">${sname(r.key)}</div><div class="bar-track"><div class="bar-fill ${r.key===best.key?'best':r.feasible?'ok':'dim'}" style="width:${w.toFixed(1)}%"></div></div><div class="bar-val money">${r.feasible?Calc.money(r.totalWealth):'<span class="bar-na">N/A</span>'}</div></div>`}).join('');
+  const regs=results.filter(r=>r.key==='hdb'||r.key==='private').map(r=>{let h=`<div class="reg-row"><span class="reg-label">TDSR (max 55%)</span><div class="reg-val"><span class="reg-pct">${r.tdsrCheck.ratio}%</span><span class="reg-status ${r.tdsrCheck.pass?'pass':'fail'}">${r.tdsrCheck.pass?'Pass':'Fail'}</span></div></div>`;if(r.msrCheck)h+=`<div class="reg-row"><span class="reg-label">MSR (max 30%)</span><div class="reg-val"><span class="reg-pct">${r.msrCheck.ratio}%</span><span class="reg-status ${r.msrCheck.pass?'pass':'fail'}">${r.msrCheck.pass?'Pass':'Fail'}</span></div></div>`;return`<div class="sens-card"><div class="sens-title">${sname(r.key)} loan checks</div>${h}</div>`}).join('');
+  const cards=results.map(r=>{const ib=r.key===best.key;const ws=r.warns.map(w=>`<div class="pc-warn">${w}</div>`).join('');const bea=r.bea!==null?`<div class="pc-m"><span class="ml">Break-even appreciation</span><span class="mv">${r.bea}%/yr</span></div>`:'';return`<div class="path-card${ib?' is-best':''}${!r.feasible?' infeasible':''}"><div class="pc-head"><div><div class="pc-name">${r.title}</div><div class="pc-note">${r.note}</div></div><span class="pill ${r.comfort.tone}">${r.comfort.label}</span></div><div class="pc-metrics"><div class="pc-m"><span class="ml">Upfront cash</span><span class="mv money">${Calc.moneyFull(r.upfront)}</span></div><div class="pc-m"><span class="ml">Monthly housing</span><span class="mv money">${Calc.moneyFull(r.moHousCash)}/mo</span></div><div class="pc-m"><span class="ml">Wealth at ${hz}yr</span><span class="mv money">${r.feasible?Calc.money(r.totalWealth):'\u2014'}</span></div><div class="pc-m"><span class="ml">Cash at exit</span><span class="mv money">${Calc.moneyFull(r.cashProc)}</span></div><div class="pc-m"><span class="ml">CPF used upfront</span><span class="mv money">${Calc.moneyFull(r.upfrontCpf)}</span></div>${bea}</div>${ws?`<div class="pc-warns">${ws}</div>`:''}</div>`}).join('');
+  const sr=sensitivity.filter(s=>s.type==='return').map(s=>`<div class="sens-row"><span class="sr-label">${s.label}</span><span class="sr-winner ${wclass(s.winner)}">${sname(s.winner)}</span></div>`).join('');
+  const sh=sensitivity.filter(s=>s.type==='horizon').map(s=>`<div class="sens-row"><span class="sr-label">${s.label}</span><span class="sr-winner ${wclass(s.winner)}">${sname(s.winner)}</span></div>`).join('');
+
+  document.getElementById('resultsInner').innerHTML=`
+    <div class="verdict-card ${best.key}-wins fu"><div class="v-tag">Best path at ${hz} years</div><div class="v-title">${best.title}</div><div class="v-desc">${summary.msg}</div><div class="v-kpis"><div class="v-kpi"><span class="kl">Total wealth</span><span class="kv money">${Calc.money(best.totalWealth)}</span></div><div class="v-kpi"><span class="kl">Upfront cash</span><span class="kv money">${Calc.moneyFull(best.upfront)}</span></div><div class="v-kpi"><span class="kl">Lead over #2</span><span class="kv money">+${Calc.money(summary.gap)}</span></div><div class="v-kpi"><span class="kl">Monthly housing</span><span class="kv money">${Calc.moneyFull(best.moHousCash)}/mo</span></div></div></div>
+    <div class="chart-card fu fu1"><div class="chart-title">Wealth trajectory over ${hz} years</div><div class="chart-wrap"><canvas id="wealthChart"></canvas></div><div class="chart-legend"><div class="legend-item"><div class="legend-dot" style="background:#2563eb"></div>Wait + invest</div><div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Rent + invest</div><div class="legend-item"><div class="legend-dot" style="background:#0d7c66"></div>Resale HDB</div><div class="legend-item"><div class="legend-dot" style="background:#e67e22"></div>Private condo</div></div></div>
+    <div class="chart-card fu fu2"><div class="chart-title">Total wealth at ${hz} years</div><div class="bar-rows">${bars}</div></div>
+    <div class="sens-grid fu fu3"><div class="sens-card"><div class="sens-title">Winner by market return</div>${sr}</div><div class="sens-card"><div class="sens-title">Winner by holding period</div>${sh}</div></div>
+    <div class="sens-grid fu fu3">${regs}</div>
+    <div class="path-cards fu fu4">${cards}</div>
+    <div class="insight-grid fu fu5"><div class="ins-card"><div class="ins-title">Key caution</div><div class="ins-text">${summary.caution}</div></div><div class="ins-card"><div class="ins-title">Assumption risk</div><div class="ins-text">${summary.risk}</div></div><div class="ins-card"><div class="ins-title">Lowest monthly strain</div><div class="ins-text">${summary.lowStrain.title} costs ${Calc.moneyFull(summary.lowStrain.moHousCash)}/mo in housing. The most cash-flow-friendly option.</div></div><div class="ins-card"><div class="ins-title">What this tool omits</div><div class="ins-text">Lifestyle value, emotional stability, privacy, school proximity, and the non-financial case for owning. Factor those separately.</div></div></div>
+    <p class="disclaimer">This is a decision-support tool, not financial advice. Lenders may approve more than is sensible for long-term wealth. Run multiple presets to test whether the result holds.</p>
+    <div class="attrib">Built by <a href="https://www.linkedin.com/in/leonard22/" target="_blank" rel="noopener">Leonard</a></div>`;
+  requestAnimationFrame(()=>{drawChart('wealthChart',results,hz);document.querySelectorAll('.bar-fill').forEach(b=>{const w=b.style.width;b.style.width='0';requestAnimationFrame(()=>{b.style.width=w})})});
+}
+
+window.addEventListener('resize',()=>{if(cur>TOTAL){const st=readState();const{results}=Calc.compare(st);drawChart('wealthChart',results,st.assumptions.horizonYears)}});
+document.getElementById('btnNext').addEventListener('click',goNext);
+document.getElementById('btnBack').addEventListener('click',goBack);
+renderPresets();applyPreset('base');updatePropTax('hdb');updatePropTax('priv');
+</script>
+</body>
+</html>
