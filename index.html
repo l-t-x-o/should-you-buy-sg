@@ -289,6 +289,12 @@ details.adv .adv-grid{margin-top:.75rem}
 .cmp-table .best-badge{display:inline-flex;font-size:.55rem;font-weight:700;padding:.1rem .35rem;border-radius:999px;background:var(--accent);color:#fff;margin-left:.3rem;vertical-align:middle;letter-spacing:.03em;text-transform:uppercase}
 .money{font-variant-numeric:tabular-nums}
 
+/* Share buttons */
+.share-row{display:flex;gap:.5rem;margin-bottom:.85rem;flex-wrap:wrap}
+.share-btn{display:flex;align-items:center;gap:.35rem;padding:.5rem 1rem;border-radius:var(--r-sm);border:1.5px solid var(--border-s);background:var(--card);color:var(--text2);font-size:.78rem;font-weight:500;cursor:pointer;transition:all .2s;box-shadow:var(--shadow)}
+.share-btn:hover{border-color:var(--accent);color:var(--accent)}
+.share-btn.copied{border-color:var(--green);color:var(--green)}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .fu{animation:fadeUp .4s ease both}.fu1{animation-delay:.05s}.fu2{animation-delay:.1s}.fu3{animation-delay:.15s}.fu4{animation-delay:.2s}.fu5{animation-delay:.25s}
 
@@ -307,41 +313,39 @@ details.adv .adv-grid{margin-top:.75rem}
 
 <!-- ═══════ LANDING PAGE ═══════ -->
 <div class="landing" id="landing">
-  <div class="l-badge">Free tool for Singapore</div>
-  <p style="font-size:1.05rem;font-weight:600;color:var(--accent);margin-bottom:.75rem;letter-spacing:-0.01em">An agent says it is a good deal. Is it?</p>
-  <h1 class="l-title">Figure out if you should <em>buy</em>, rent, or wait<em>.</em></h1>
-  <p class="l-sub">You are thinking about buying a home. Maybe someone told you 'property always goes up' or 'renting is throwing money away.' This tool lets you check those claims yourself, with your own numbers, so you can make a decision you actually understand.</p>
+  <div class="l-badge">Free tool</div>
+  <p style="font-size:.88rem;font-weight:500;color:var(--text2);margin-bottom:.65rem;max-width:400px;line-height:1.5">Built by Leonard, a regular Singaporean figuring out finances like the rest of us.</p>
+  <h1 class="l-title">How will your wealth grow<em>?</em></h1>
+  <p class="l-sub">Many people believe Singapore property is the best way to build wealth. Maybe, maybe not. This tool helps you project your wealth based on how you split it between equities, bonds, and specific Singapore properties, using historical averages and your actual numbers.</p>
   <div class="l-features">
     <div class="l-feat">
       <div class="l-feat-icon">🏠</div>
-      <div><strong>Built for people buying a home, not an investment.</strong> Compare buying (HDB or condo) against renting or waiting, based on what you can actually afford.</div>
+      <div><strong>Compare staying put, renting, or buying.</strong> See how each path grows your wealth over 5 to 20 years, accounting for rent, mortgage, CPF, and investment returns.</div>
     </div>
     <div class="l-feat">
       <div class="l-feat-icon">📊</div>
-      <div><strong>See the full picture over time.</strong> Not just 'can I afford the down payment,' but what each path means for your finances 5, 10, or 15 years from now.</div>
+      <div><strong>Based on real historical data.</strong> Choose from popular ETFs like VWRA or CSPX with actual 10-year returns. Property appreciation uses the range you set.</div>
     </div>
     <div class="l-feat">
       <div class="l-feat-icon">⚖️</div>
-      <div><strong>No one is trying to sell you anything.</strong> No ads, no agent referrals, no hidden agenda. Just math you can check.</div>
+      <div><strong>Understand the tradeoffs.</strong> Property concentrates your wealth in one Singapore asset. Index funds spread it across thousands of companies globally. Both have risks.</div>
     </div>
     <div class="l-feat">
       <div class="l-feat-icon">🔒</div>
-      <div><strong>Your data stays on your device.</strong> Nothing is stored or sent anywhere. The <a href="https://github.com/l-t-x-o/should-you-buy-sg" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">source code is public</a> so you can verify this yourself.</div>
+      <div><strong>100% private. Open source.</strong> Your data stays on your device. The <a href="https://github.com/l-t-x-o/should-you-buy-sg" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">source code is public</a> so you can verify every calculation.</div>
     </div>
   </div>
   <button class="l-cta" id="startBtn">Try it now</button>
-  <p class="l-time">Takes about 3 minutes. You just need a rough idea of your income, savings, and the properties you are looking at.</p>
-  <p style="font-size:.65rem;color:var(--subtle);max-width:380px;line-height:1.5;margin-top:.75rem">This tool produces projections based on your assumptions, not financial advice. Consult a licensed professional before making property decisions.</p>
+  <p class="l-time">Takes about 3 minutes. All you need is a rough idea of your income, savings, and what you are considering.</p>
+  <p style="font-size:.65rem;color:var(--subtle);max-width:380px;line-height:1.5;margin-top:.75rem">This tool produces projections based on your assumptions, not financial advice. Always do your own research and consult a qualified professional.</p>
   <div class="l-trust">
     <span>No sign-up</span>
     <span>100% free</span>
     <span>Open source</span>
   </div>
-  <div class="attrib" style="margin-top:1.5rem">Built by Leonard, a regular Singaporean figuring it out like the rest of us.</div>
-  <div style="display:flex;gap:1rem;margin-top:.75rem;font-size:.72rem;flex-wrap:wrap;justify-content:center">
+  <div style="display:flex;gap:1rem;margin-top:1.25rem;font-size:.72rem;flex-wrap:wrap;justify-content:center">
     <a href="https://buymeacoffee.com/ltxo" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">Like it? Buy him an iTea 🧋</a>
     <a href="https://forms.gle/QDU2FmEUkWHw9nEy6" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline">Give feedback</a>
-    <a href="https://github.com/l-t-x-o/should-you-buy-sg" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline">View source code</a>
   </div>
 </div>
 
@@ -349,7 +353,10 @@ details.adv .adv-grid{margin-top:.75rem}
 <div class="app-wrap" id="appWrap">
 
 <header class="header" id="appHeader">
-  <div class="brand" id="brandHome">Should You Buy<em>?</em></div>
+  <div style="display:flex;align-items:center;gap:.5rem">
+    <button id="homeBtn" title="Back to home" style="background:none;border:1px solid var(--border-s);border-radius:var(--r-sm);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--text2);flex-shrink:0" aria-label="Home">🏠</button>
+    <div class="brand">Should You Buy<em>?</em></div>
+  </div>
   <div class="prog" id="prog">
     <div class="prog-seg active"></div>
     <div class="prog-seg"></div>
@@ -458,19 +465,39 @@ details.adv .adv-grid{margin-top:.75rem}
 
   <div class="card">
     <div class="card-label"><span class="dot"></span> How you would invest your surplus</div>
-    <p class="f-hint" style="margin-top:-.5rem;margin-bottom:.85rem">If you do not buy, the tool assumes you invest your surplus cash. How would you split it? This does not constitute a recommendation to invest in any particular product.</p>
+    <p class="f-hint" style="margin-top:-.5rem;margin-bottom:.85rem">If you do not buy, the tool assumes you invest your surplus cash. This does not constitute a recommendation to invest in any particular product.</p>
     <div class="fg fg-2">
-      <div class="field"><label>Equities allocation (%)<span class="tip" data-tip="The portion going into stocks or stock ETFs like VWRA, IWDA, or CSPX. Historically higher returns but more volatile. Common ETFs for Singapore investors include VWRA (~8.5% annualized over 10yr), IWDA (~10%), CSPX (~13%), and ES3 / STI ETF (~4.5%).">?</span></label>
+      <div class="field"><label>Pick a benchmark ETF<span class="f-opt">optional</span><span class="tip" data-tip="These are popular ETFs accessible to Singapore investors via brokerages like IBKR, Syfe, or Endowus. The 10-year return is used to pre-fill the equity return below. You can override it.">?</span></label>
+        <select id="etfSelect" onchange="applyETF()">
+          <option value="">Choose an ETF (optional)</option>
+          <option value="8.5">VWRA — Vanguard All-World (~8.5% / 10yr)</option>
+          <option value="10.2">IWDA — iShares MSCI World (~10% / 10yr)</option>
+          <option value="13.0">CSPX — iShares S&P 500 (~13% / 10yr)</option>
+          <option value="4.5">ES3 — SPDR STI ETF (~4.5% / 10yr)</option>
+          <option value="3.2">EIMI — iShares Emerging Markets (~3% / 10yr)</option>
+          <option value="9.0">SWRD — SPDR MSCI World (~9% / 10yr)</option>
+          <option value="7.5">VWRD — Vanguard All-World Dist (~7.5% / 10yr)</option>
+        </select>
+        <p class="f-hint">Returns are approximate 10-year annualized figures. Past performance does not predict future returns.</p>
+      </div>
+      <div class="field"><label>Expected equity return (% / year)<span class="tip" data-tip="The annual return on the equity portion of your portfolio. Global equities have returned 7-9% nominally over the long run. This is the single most important assumption: the higher this number, the more attractive renting becomes vs buying.">?</span></label>
+        <input type="number" id="investReturn" value="7" min="0" max="20" step="0.5" inputmode="decimal">
+        <p class="f-hint">7% is a reasonable base for a globally diversified portfolio. 6% is cautious, 9% is optimistic.</p>
+      </div>
+      <div class="field"><label>Equities allocation (%)<span class="tip" data-tip="What portion of your investment goes into stocks or stock ETFs. The remainder goes to bonds / SSBs.">?</span></label>
         <input type="number" id="equityPct" value="80" min="0" max="100" step="5" inputmode="numeric">
         <p class="f-hint">Common range: 60-100%. Higher equity = higher expected return but more volatility.</p>
       </div>
-      <div class="field"><label>Bonds / SSB allocation (%)<span class="tip" data-tip="The portion going into Singapore Savings Bonds (SSBs), fixed deposits, or bond ETFs. Lower returns but much more stable. SSBs currently yield about 2.5-3% and are backed by the Singapore government.">?</span></label>
+      <div class="field"><label>Bonds / SSB allocation (%)</label>
         <input type="number" id="bondPct" value="20" min="0" max="100" step="5" inputmode="numeric" readonly style="background:var(--bg2)">
-        <p class="f-hint">Auto-calculated as the remainder. SSBs currently yield roughly 2.5-3%.</p>
       </div>
-      <div class="field"><label>How much of your monthly surplus will you invest? (%)<span class="tip" data-tip="Not everyone invests 100% of their surplus. Some goes to discretionary spending, gifts, travel, etc. Be honest here, as this significantly affects the non-buying paths.">?</span></label>
+      <div class="field"><label>Expected bond / SSB return (% / year)<span class="tip" data-tip="SSBs currently yield about 2.5-3% over 10 years. Fixed deposits yield 2-3%. Bond ETFs like A35 have returned roughly 2-3%.">?</span></label>
+        <input type="number" id="bondReturn" value="2.8" min="0" max="8" step="0.1" inputmode="decimal">
+        <p class="f-hint">SSBs yield around 2.5-3%. Separate from equity return above.</p>
+      </div>
+      <div class="field"><label>How much of your monthly surplus will you invest? (%)<span class="tip" data-tip="Not everyone invests 100% of their surplus. Some goes to discretionary spending, gifts, travel, etc. Be honest, as this significantly affects the non-buying paths.">?</span></label>
         <input type="number" id="investPct" value="70" min="0" max="100" step="5" inputmode="numeric">
-        <p class="f-hint">Be realistic. If you would actually invest 70% and spend 30%, enter 70. This makes the comparison more honest.</p>
+        <p class="f-hint">Be realistic. If you would invest 70% and spend 30%, enter 70.</p>
       </div>
     </div>
   </div>
@@ -510,7 +537,7 @@ details.adv .adv-grid{margin-top:.75rem}
         <div class="field"><label>Loan type</label>
           <select id="hdbLoanType"><option value="hdb" selected>HDB loan (2.6%)</option><option value="bank">Bank loan</option></select>
         </div>
-        <div class="field"><label>Annual appreciation (%)<span class="tip" data-tip="Resale HDB has appreciated 2-3% per year on average over the past decade. This varies a lot by location, flat type, and remaining lease. Older-lease units tend to appreciate more slowly.">?</span></label>
+        <div class="field"><label>Annual appreciation (%)<span class="tip" data-tip="Resale HDB has averaged 2-3% per year over the past decade. Key factors: proximity to MRT stations, nearby schools, remaining lease length, floor level, flat condition, and town maturity. Flats near new MRT lines or in mature estates with established amenities tend to outperform.">?</span></label>
           <input type="number" id="hdbAppreciation" value="2.5" step="0.1" inputmode="decimal">
         </div>
         <div class="field"><label>Will you live in this flat?</label>
@@ -583,7 +610,7 @@ details.adv .adv-grid{margin-top:.75rem}
         <div class="field"><label>Remaining lease (years)</label><input type="number" id="privLease" value="99" min="20" max="999" inputmode="numeric">
           <p class="f-hint">Freehold = 999. New 99-year leasehold = 99.</p>
         </div>
-        <div class="field"><label>Annual appreciation (%)<span class="tip" data-tip="Singapore private property has appreciated roughly 3-4% per year over the past 20 years, with significant cyclical swings. New launches may carry a developer premium that limits early gains. Resale condos in established areas tend to be steadier.">?</span></label>
+        <div class="field"><label>Annual appreciation (%)<span class="tip" data-tip="Singapore private property has averaged 3-4% per year over 20 years with significant cycles. Key factors: district, MRT proximity, school catchment, condo age and facilities, floor and facing, unit mix, and developer reputation. New launches carry a premium that may limit early gains. Location near upcoming infrastructure (e.g. new MRT lines, business hubs) can drive above-average growth.">?</span></label>
           <input type="number" id="privAppreciation" value="3" step="0.1" inputmode="decimal">
         </div>
         <div class="field"><label>Will you live in this unit?</label>
@@ -659,22 +686,6 @@ details.adv .adv-grid{margin-top:.75rem}
       </div>
       <div class="field"><label>HDB loan rate (%)<span class="tip" data-tip="HDB concessionary loans are pegged at 0.1% above the CPF OA interest rate, which has been 2.5% since 1999. This makes the HDB loan rate 2.6%. It can change if CPF adjusts the OA rate, but it has been stable for over 25 years.">?</span></label><input type="number" id="hdbRate" value="2.6" min="0" max="10" step="0.1" inputmode="decimal">
         <p class="f-hint">HDB loan rate has been 2.6% for over 25 years (pegged at CPF OA rate + 0.1%). Lower than bank loans, but comes with 80% LTV instead of 75%.</p>
-      </div>
-      <div class="field"><label>Benchmark ETF<span class="tip" data-tip="Pick an ETF you would actually invest in. The tool uses its historical annualized return to set the market return assumption. You can override the number below.">?</span></label>
-        <select id="etfSelect" onchange="applyETF()">
-          <option value="">Choose an ETF (optional)</option>
-          <option value="8.5">VWRA — Vanguard FTSE All-World (~8.5% / 10yr)</option>
-          <option value="10.2">IWDA — iShares MSCI World (~10% / 10yr)</option>
-          <option value="13.0">CSPX — iShares S&P 500 (~13% / 10yr)</option>
-          <option value="4.5">ES3 — SPDR STI ETF (~4.5% / 10yr)</option>
-          <option value="3.2">EIMI — iShares MSCI Emerging Markets (~3% / 10yr)</option>
-          <option value="9.0">SWRD — SPDR MSCI World (~9% / 10yr)</option>
-          <option value="7.5">VWRD — Vanguard All-World Distributing (~7.5% / 10yr)</option>
-        </select>
-        <p class="f-hint">Returns are approximate 10-year annualized figures in USD terms. Past performance does not predict future returns.</p>
-      </div>
-      <div class="field"><label>Index fund return (% / year)<span class="tip" data-tip="This is the annual return the model assumes for your investment portfolio. Global equities have returned 7-9% nominally over the long run. A cautious assumption is 6%, optimistic is 9%. This is the single most important assumption in the model because it determines the opportunity cost of locking capital into property.">?</span></label><input type="number" id="investReturn" value="7" min="0" max="20" step="0.5" inputmode="decimal">
-        <p class="f-hint">The higher this number, the more attractive renting and investing becomes relative to buying. 7% is a reasonable base case for a globally diversified portfolio.</p>
       </div>
       <div class="field"><label>Bank loan tenure (years)<span class="tip" data-tip="Maximum is 30 years for bank loans (or 35 years minus borrower age, whichever is shorter). Longer tenure means lower monthly payments but more total interest paid. Most Singapore buyers choose 25-30 years.">?</span></label><input type="number" id="bankTerm" value="30" min="1" max="35" inputmode="numeric">
         <p class="f-hint">Max 30 years for private property. Longer tenure = lower monthly payments but more interest overall.</p>
@@ -825,19 +836,34 @@ function simRent(inp){
 }
 
 function compare(inp){
-  const a=inp.assumptions;const res=[simWait(inp),simRent(inp)];
-  if(inp.hdb.enabled)res.push(simProperty('hdb',inp.hdb,inp));
-  if(inp.privateHome.enabled)res.push(simProperty('private',inp.privateHome,inp));
-  const waitW=res[0].totalWealth;
-  for(const it of res){if(it.key!=='hdb'&&it.key!=='private')continue;let lo=-.03,hi=.12;for(let i=0;i<30;i++){const mid=(lo+hi)/2;const c=JSON.parse(JSON.stringify(inp));if(it.key==='hdb')c.hdb.annualAppreciation=mid;else c.privateHome.annualAppreciation=mid;const t=simProperty(it.key,it.key==='hdb'?c.hdb:c.privateHome,c);if(t.totalWealth>=waitW)hi=mid;else lo=mid}it.bea=round(hi*100,1)}
-  const sens=runSens(inp);const sorted=[...res].sort((a,b)=>b.totalWealth-a.totalWealth);
-  const best=sorted[0],runner=sorted[1];const ls=res.reduce((a,c)=>(c.feasible&&c.moHousCash<a.moHousCash)?c:a,res.find(r=>r.feasible)||res[0]);
-  const gap=round(best.totalWealth-runner.totalWealth);let msg='',caut='',risk='';
-  if(best.key==='wait'){msg=`Staying with your parents and investing everything produces the strongest balance sheet at ${a.horizonYears} years. Every dollar of surplus compounds in the market instead of being locked into property.`;caut='This only holds if the monthly surplus is actually invested, not spent.';risk='If consistent investing is unlikely, this result is overstated.'}
-  else if(best.key==='rent'){msg=`Renting and investing the difference comes out ahead because it preserves more capital and monthly investing capacity than buying does under these assumptions.`;caut='Rent escalation erodes this over longer horizons. If rents rise faster than expected, the lead shrinks.';risk='Try changing the rent growth assumption to see how sensitive this is.'}
-  else if(best.key==='hdb'){msg=`Buying a resale HDB produces the strongest projected wealth outcome here, combining a manageable entry cost with stable property growth.`;caut='Remaining lease at exit matters more than most buyers expect. Older-lease flats face steep haircuts.';risk=`The HDB path needs at least ${best.bea!==null?best.bea+'%':''} annual appreciation to beat waiting and investing.`}
-  else{msg=`The private condo path leads because the appreciation assumption gives it enough upside to overcome substantially higher upfront costs.`;caut='This is the most assumption-sensitive path. A small change in appreciation or interest rates can flip the result.';risk=`Private needs roughly ${best.bea!==null?best.bea+'%':'sustained'} annual appreciation just to match the wait-and-invest baseline.`}
-  return{results:sorted,summary:{best,runner,lowStrain:ls,gap,msg,caution:caut,risk},sensitivity:sens};
+  const a=inp.assumptions;const allRes=[];
+  const waitR=simWait(inp);
+  // Only include stay-with-parents if actually available
+  if(inp.profile.canStayWithFamily)allRes.push(waitR);
+  allRes.push(simRent(inp));
+  if(inp.hdb.enabled)allRes.push(simProperty('hdb',inp.hdb,inp));
+  if(inp.privateHome.enabled)allRes.push(simProperty('private',inp.privateHome,inp));
+  const waitW=waitR.totalWealth;
+  for(const it of allRes){if(it.key!=='hdb'&&it.key!=='private')continue;let lo=-.03,hi=.12;for(let i=0;i<30;i++){const mid=(lo+hi)/2;const c=JSON.parse(JSON.stringify(inp));if(it.key==='hdb')c.hdb.annualAppreciation=mid;else c.privateHome.annualAppreciation=mid;const t=simProperty(it.key,it.key==='hdb'?c.hdb:c.privateHome,c);if(t.totalWealth>=waitW)hi=mid;else lo=mid}it.bea=round(hi*100,1)}
+  const sens=runSens(inp);
+  const sorted=[...allRes].sort((a,b)=>b.totalWealth-a.totalWealth);
+  // Best FEASIBLE path (this is what we recommend)
+  const feasibleSorted=sorted.filter(r=>r.feasible);
+  const bestFeasible=feasibleSorted[0]||sorted[0];
+  const bestOverall=sorted[0];
+  const runner=feasibleSorted[1]||sorted[1]||sorted[0];
+  const ls=allRes.reduce((a,c)=>(c.feasible&&c.moHousCash<a.moHousCash)?c:a,allRes.find(r=>r.feasible)||allRes[0]);
+  const gap=round(bestFeasible.totalWealth-(runner.key!==bestFeasible.key?runner.totalWealth:0));
+  // Is the overall best infeasible? If so, flag it
+  const infeasibleBetter=bestOverall.key!==bestFeasible.key&&!bestOverall.feasible;
+  let msg='',caut='',risk='';
+  const bk=bestFeasible.key;
+  if(bk==='wait'){msg=`Staying with your parents and investing your surplus produces the strongest projected balance sheet at ${a.horizonYears} years.`;caut='This only holds if the monthly surplus is actually invested, not spent.';risk='If consistent investing is unlikely, this result is overstated.'}
+  else if(bk==='rent'){msg=`Renting and investing the difference comes out ahead because it preserves more capital and monthly investing capacity than buying does under these assumptions.`;caut='Rent escalation erodes this over longer horizons. If rents rise faster than expected, the lead shrinks.';risk='Try changing the rent growth assumption to see how sensitive this is.'}
+  else if(bk==='hdb'){msg=`Buying a resale HDB produces the strongest projected wealth outcome among your affordable options, combining a manageable entry cost with stable property growth.`;caut='Remaining lease at exit matters more than most buyers expect. Older-lease flats face steep haircuts.';risk=bestFeasible.bea!==null?'The HDB path needs at least '+bestFeasible.bea+'% annual appreciation to beat renting and investing.':''}
+  else{msg=`The private condo path leads among your affordable options because the appreciation assumption gives it enough upside to overcome higher upfront costs.`;caut='This is the most assumption-sensitive path. A small change in appreciation or interest rates can flip the result.';risk=bestFeasible.bea!==null?'Private needs roughly '+bestFeasible.bea+'% annual appreciation just to match renting and investing.':''}
+  if(infeasibleBetter)msg+=` Note: ${bestOverall.title} would project higher wealth (${money(bestOverall.totalWealth)}) but is not affordable based on your current savings and income.`;
+  return{results:sorted,summary:{best:bestFeasible,bestOverall,runner,lowStrain:ls,gap,msg,caution:caut,risk,infeasibleBetter},sensitivity:sens};
 }
 
 function runSens(inp){
@@ -846,7 +872,7 @@ function runSens(inp){
   for(const h of[5,7,10,15,20]){const c=JSON.parse(JSON.stringify(inp));c.assumptions.horizonYears=h;const q=qc(c);s.push({type:'horizon',label:`${h}-year hold`,winner:q.key})}
   return s;
 }
-function qc(inp){const p=[simWait(inp),simRent(inp)];if(inp.hdb.enabled)p.push(simProperty('hdb',inp.hdb,inp));if(inp.privateHome.enabled)p.push(simProperty('private',inp.privateHome,inp));return p.reduce((a,c)=>(c.feasible&&c.totalWealth>a.totalWealth)?c:a,p[0])}
+function qc(inp){const p=[];if(inp.profile.canStayWithFamily)p.push(simWait(inp));p.push(simRent(inp));if(inp.hdb.enabled)p.push(simProperty('hdb',inp.hdb,inp));if(inp.privateHome.enabled)p.push(simProperty('private',inp.privateHome,inp));return p.reduce((a,c)=>(c.feasible&&c.totalWealth>a.totalWealth)?c:a,p[0])}
 function quickFeasibility(kind,inp){
   const p=inp.profile,a=inp.assumptions,prop=kind==='hdb'?inp.hdb:inp.privateHome;const isHdb=kind==='hdb';
   const uhl=prop.loanType==='hdb';const rate=uhl?a.hdbLoanRate:a.bankRate;const term=uhl?a.hdbLoanTermYears:a.bankLoanTermYears;
@@ -1043,7 +1069,7 @@ function readState(){
   rent:{monthlyRent:n('monthlyRent'),moveInCost:n('moveInCost')},
   hdb:{price:n('hdbPrice'),grant:n('hdbGrant'),remainingLeaseYears:n('hdbLease'),loanType:s('hdbLoanType'),annualAppreciation:n('hdbAppreciation')/100,monthlyFees:n('hdbFees'),marketRent:n('hdbMarketRent'),renovation:n('hdbReno'),legal:n('hdbLegal'),enabled:document.getElementById('hdbEnabled')?.checked!==false,occupancy:s('hdbOccupancy'),rentalIncome:n('hdbRentalIncome'),ownHousing:s('hdbOwnHousing'),ownRent:n('hdbOwnRent')},
   privateHome:{price:n('privPrice'),remainingLeaseYears:n('privLease'),loanType:'bank',purchaseType:s('privType'),topYears:n('privTopYears'),bridgeRent:n('privBridgeRent'),annualAppreciation:n('privAppreciation')/100,monthlyFees:n('privFees'),marketRent:n('privMarketRent'),renovation:n('privReno'),legal:n('privLegal'),enabled:document.getElementById('privEnabled')?.checked!==false,occupancy:s('privOccupancy'),rentalIncome:n('privRentalIncome'),ownHousing:s('privOwnHousing'),ownRent:n('privOwnRent')},
-  assumptions:{horizonYears:parseInt(s('horizon'))||10,bankRate:n('bankRate')/100,hdbLoanRate:n('hdbRate')/100,bankLoanTermYears:n('bankTerm')||30,hdbLoanTermYears:n('hdbTerm')||25,investReturn:n('investReturn')/100,sellingCostPct:n('sellCost')/100,maintenanceShockPct:n('mntShock')/100,salaryGrowth:n('salaryGrowth')/100,inflation:n('inflation')/100,rentGrowth:n('rentGrowth')/100,cpfAccruedRate:.025,equityPct:n('equityPct')/100,bondPct:(100-n('equityPct'))/100,bondReturn:0.028,investPct:n('investPct')/100}};
+  assumptions:{horizonYears:parseInt(s('horizon'))||10,bankRate:n('bankRate')/100,hdbLoanRate:n('hdbRate')/100,bankLoanTermYears:n('bankTerm')||30,hdbLoanTermYears:n('hdbTerm')||25,investReturn:n('investReturn')/100,sellingCostPct:n('sellCost')/100,maintenanceShockPct:n('mntShock')/100,salaryGrowth:n('salaryGrowth')/100,inflation:n('inflation')/100,rentGrowth:n('rentGrowth')/100,cpfAccruedRate:.025,equityPct:n('equityPct')/100,bondPct:(100-n('equityPct'))/100,bondReturn:n('bondReturn')/100,investPct:n('investPct')/100}};
 }
 
 function applyPreset(key){preset=key;const p=PRESETS[key];const set=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v};set('bankRate',(p.bankRate*100).toFixed(1));set('hdbRate',(p.hdbRate*100).toFixed(1));set('investReturn',(p.investReturn*100).toFixed(0));set('hdbAppreciation',(p.hdbApp*100).toFixed(1));set('privAppreciation',(p.privApp*100).toFixed(1));set('mntShock',(p.mntShock*100).toFixed(0));set('sellCost',(p.sellCost*100).toFixed(1));renderPresets()}
@@ -1055,13 +1081,17 @@ function goBack(){if(cur>TOTAL)cur=TOTAL;else if(cur>1)cur--;showPanel(cur);upda
 
 // Start app from landing
 document.getElementById('startBtn').addEventListener('click',()=>{document.getElementById('landing').style.display='none';document.getElementById('appWrap').classList.add('visible');document.getElementById('navBar').classList.remove('hidden');showPanel(1);updateUI()});
-document.getElementById('brandHome').addEventListener('click',()=>{if(cur>TOTAL){cur=1;showPanel(1);updateUI()}});
+document.getElementById('homeBtn').addEventListener('click',()=>{
+  if(confirm('Go back to the home page?')){
+    document.getElementById('landing').style.display='';document.getElementById('appWrap').classList.remove('visible');document.getElementById('navBar').classList.add('hidden');cur=1;showPanel(1);updateUI();
+  }
+});
 
 // Toggle listeners
 document.querySelectorAll('#familyToggle button').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#familyToggle button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('familyCostWrap').style.display=btn.dataset.fam==='yes'?'grid':'none'})});
 document.querySelectorAll('#deployInvestToggle button').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#deployInvestToggle button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');debounceFeas()})});
 
-function drawChart(id,results,hz){const canvas=document.getElementById(id);if(!canvas)return;const ctx=canvas.getContext('2d');const dpr=window.devicePixelRatio||1;const rect=canvas.parentElement.getBoundingClientRect();canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;canvas.style.width=rect.width+'px';canvas.style.height=rect.height+'px';ctx.scale(dpr,dpr);const W=rect.width,H=rect.height,pad={t:20,r:16,b:35,l:56},cW=W-pad.l-pad.r,cH=H-pad.t-pad.b;const colors={wait:'#2563eb',rent:'#7c3aed',hdb:'#0d7c66',private:'#e67e22'};let mW=0;for(const r of results){if(!r.feasible)continue;for(const y of r.yearly){if(y.totalWealth>mW)mW=y.totalWealth}}mW=mW*1.08||1;ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);ctx.strokeStyle='rgba(0,0,0,0.06)';ctx.lineWidth=1;for(let i=0;i<=5;i++){const y=pad.t+cH-cH*(i/5);ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();ctx.fillStyle='#7a839b';ctx.font='500 10px Outfit,sans-serif';ctx.textAlign='right';const v=mW*(i/5);ctx.fillText(v>=1e6?(v/1e6).toFixed(1)+'M':(v/1e3).toFixed(0)+'K',pad.l-6,y+4)}ctx.textAlign='center';for(let yr=0;yr<=hz;yr+=Math.max(1,Math.floor(hz/6))){ctx.fillText('Y'+yr,pad.l+cW*(yr/hz),H-pad.b+18)}for(const r of results){if(!r.feasible||!r.yearly.length)continue;ctx.strokeStyle=colors[r.key];ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.beginPath();for(let i=0;i<r.yearly.length;i++){const x=pad.l+cW*((i+1)/hz),y=pad.t+cH-cH*(r.yearly[i].totalWealth/mW);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();const ly=r.yearly[r.yearly.length-1];ctx.fillStyle=colors[r.key];ctx.beginPath();ctx.arc(pad.l+cW,pad.t+cH-cH*(ly.totalWealth/mW),4,0,Math.PI*2);ctx.fill()}}
+function drawChart(id,results,hz){const canvas=document.getElementById(id);if(!canvas)return;const ctx=canvas.getContext('2d');const dpr=window.devicePixelRatio||1;const rect=canvas.parentElement.getBoundingClientRect();canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;canvas.style.width=rect.width+'px';canvas.style.height=rect.height+'px';ctx.scale(dpr,dpr);const W=rect.width,H=rect.height,pad={t:20,r:16,b:35,l:56},cW=W-pad.l-pad.r,cH=H-pad.t-pad.b;const colors={wait:'#2563eb',rent:'#7c3aed',hdb:'#0d7c66',private:'#e67e22'};let mW=0;for(const r of results){if(!r.yearly)continue;for(const y of r.yearly){if(y.totalWealth>mW)mW=y.totalWealth}}mW=mW*1.08||1;ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);ctx.strokeStyle='rgba(0,0,0,0.06)';ctx.lineWidth=1;for(let i=0;i<=5;i++){const y=pad.t+cH-cH*(i/5);ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();ctx.fillStyle='#7a839b';ctx.font='500 10px Outfit,sans-serif';ctx.textAlign='right';const v=mW*(i/5);ctx.fillText(v>=1e6?(v/1e6).toFixed(1)+'M':(v/1e3).toFixed(0)+'K',pad.l-6,y+4)}ctx.textAlign='center';for(let yr=0;yr<=hz;yr+=Math.max(1,Math.floor(hz/6))){ctx.fillText('Y'+yr,pad.l+cW*(yr/hz),H-pad.b+18)}for(const r of results){if(!r.yearly||!r.yearly.length)continue;ctx.strokeStyle=colors[r.key]||'#999';ctx.lineWidth=r.feasible?2.5:1.5;ctx.lineJoin='round';if(!r.feasible)ctx.setLineDash([4,4]);else ctx.setLineDash([]);ctx.beginPath();for(let i=0;i<r.yearly.length;i++){const x=pad.l+cW*((i+1)/hz),y=pad.t+cH-cH*(r.yearly[i].totalWealth/mW);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();ctx.setLineDash([]);const ly=r.yearly[r.yearly.length-1];ctx.fillStyle=colors[r.key]||'#999';ctx.globalAlpha=r.feasible?1:0.4;ctx.beginPath();ctx.arc(pad.l+cW,pad.t+cH-cH*(ly.totalWealth/mW),4,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1}}
 
 function sname(k){return{wait:'Stay with parents',rent:'Rent + invest',hdb:'Resale HDB',private:'Private condo'}[k]||k}
 function wclass(k){return{wait:'w-wait',rent:'w-rent',hdb:'w-hdb',private:'w-private'}[k]||''}
@@ -1133,7 +1163,7 @@ function renderResults(){
     </div>
     <div class="verdict-card ${best.key}-wins fu"><div class="v-tag">Projected best path at ${hz} years</div><div class="v-title">${best.title}</div><div class="v-desc">${summary.msg}</div><div class="v-kpis"><div class="v-kpi"><span class="kl">Projected wealth</span><span class="kv money">${Calc.money(best.totalWealth)}</span></div><div class="v-kpi"><span class="kl">Upfront cash</span><span class="kv money">${Calc.moneyFull(best.upfront)}</span></div><div class="v-kpi"><span class="kl">Lead over #2</span><span class="kv money">+${Calc.money(summary.gap)}</span></div><div class="v-kpi"><span class="kl">Monthly housing</span><span class="kv money">${Calc.moneyFull(best.moHousCash)}/mo</span></div></div></div>
     <div class="explain-card fu fu1"><div class="explain-title">💡 What this means in plain English</div><div class="explain-text">${explain}</div></div>
-    <div class="chart-card fu fu1"><div class="chart-title">Wealth trajectory over ${hz} years</div><div class="chart-wrap"><canvas id="wealthChart"></canvas></div><div class="chart-legend"><div class="legend-item"><div class="legend-dot" style="background:#2563eb"></div>Stay with parents</div><div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Rent + invest</div><div class="legend-item"><div class="legend-dot" style="background:#0d7c66"></div>Resale HDB</div><div class="legend-item"><div class="legend-dot" style="background:#e67e22"></div>Private condo</div></div></div>
+    <div class="chart-card fu fu1"><div class="chart-title">Wealth trajectory over ${hz} years</div><div class="chart-wrap"><canvas id="wealthChart"></canvas></div><div class="chart-legend">${results.map(r=>{const c={wait:'#2563eb',rent:'#7c3aed',hdb:'#0d7c66',private:'#e67e22'}[r.key]||'#999';return`<div class="legend-item"><div class="legend-dot" style="background:${c}${r.feasible?'':';opacity:.4'}"></div>${r.title}${r.feasible?'':' (dashed)'}</div>`}).join('')}</div></div>
     <div class="chart-card fu fu2"><div class="chart-title">Total wealth at ${hz} years</div><div class="bar-rows">${bars}</div></div>
     <div class="sens-grid fu fu3"><div class="sens-card"><div class="sens-title">Winner by market return</div>${sr}</div><div class="sens-card"><div class="sens-title">Winner by holding period</div>${sh}</div></div>
     <div class="sens-grid fu fu3">${regs}</div>
@@ -1149,12 +1179,29 @@ function renderResults(){
     </div>
 
     <div class="explain-card fu fu5">
-      <div class="explain-title">📌 Numbers are not the whole story</div>
+      <div class="explain-title">🌍 Concentration vs diversification</div>
       <div class="explain-text">
-        <p>These projections are based on assumptions that may not hold. Property markets move in cycles, not straight lines. Investment returns vary wildly from year to year. Your income, expenses, and life circumstances will change in ways no model can predict.</p>
-        <p>Beyond the math, your risk appetite matters. How much of your wealth are you comfortable concentrating in a single Singapore property vs diversifying across global markets? How would you feel if property prices dropped 15% a year after purchase? How would you feel if the stock market dropped 30% while you were renting? There is no right answer to these questions, only your answer.</p>
-        <p><strong>This tool helps you think through the financial dimension of the decision. It does not tell you what to do.</strong></p>
+        <p>Buying a Singapore property concentrates a large portion of your wealth in <strong>one physical asset, in one country, in one market</strong>. If Singapore property prices drop or stagnate for a decade (as they did from 2013 to 2017), that wealth is locked and declining. You cannot sell a bedroom.</p>
+        <p>Investing in a global index ETF like VWRA spreads your money across <strong>thousands of companies in dozens of countries</strong>. No single company or country can wipe you out. On the balance of probabilities, a diversified global portfolio is more likely to track its historical average return than a single property is to track its assumed appreciation, simply because the sample size is vastly larger.</p>
+        <p>Neither path is 'safe.' Stocks can drop 30-40% in a crisis. Property can be illiquid when you need cash most. The question is which risk profile fits your life, your conviction on Singapore, and your ability to stay the course when things go sideways.</p>
       </div>
+    </div>
+
+    <div class="share-row fu fu5">
+      <button class="share-btn" id="shareResultsBtn" onclick="shareResults()">📋 Share results (no personal data)</button>
+      <button class="share-btn" id="saveLinkBtn" onclick="saveToUrl()">📎 Save link (with inputs)</button>
+    </div>
+
+    <div class="card fu fu5" style="background:var(--bg2)">
+      <div style="font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.65rem">Quick adjust: change key assumptions and recalculate</div>
+      <div class="fg fg-2" style="gap:.65rem">
+        <div class="field"><label style="font-size:.72rem">Equity return (% / yr)</label><input type="number" id="qaEquityReturn" value="${(st.assumptions.investReturn*100).toFixed(0)}" step="0.5" inputmode="decimal" style="padding:.45rem .65rem;font-size:.82rem"></div>
+        <div class="field"><label style="font-size:.72rem">HDB appreciation (% / yr)</label><input type="number" id="qaHdbApp" value="${(st.hdb.annualAppreciation*100).toFixed(1)}" step="0.1" inputmode="decimal" style="padding:.45rem .65rem;font-size:.82rem"></div>
+        <div class="field"><label style="font-size:.72rem">Condo appreciation (% / yr)</label><input type="number" id="qaPrivApp" value="${(st.privateHome.annualAppreciation*100).toFixed(1)}" step="0.1" inputmode="decimal" style="padding:.45rem .65rem;font-size:.82rem"></div>
+        <div class="field"><label style="font-size:.72rem">Holding period (years)</label><select id="qaHorizon" style="padding:.45rem .65rem;font-size:.82rem"><option value="5"${hz===5?' selected':''}>5</option><option value="7"${hz===7?' selected':''}>7</option><option value="10"${hz===10?' selected':''}>10</option><option value="12"${hz===12?' selected':''}>12</option><option value="15"${hz===15?' selected':''}>15</option><option value="20"${hz===20?' selected':''}>20</option></select></div>
+      </div>
+      <button class="btn btn-primary" style="margin-top:.75rem;width:100%;padding:.55rem" onclick="applyQuickAdjust()">Recalculate</button>
+      <button class="btn btn-secondary" style="margin-top:.4rem;width:100%;padding:.55rem" onclick="cur=1;showPanel(1);updateUI()">Go back to full inputs</button>
     </div>
 
     <div class="legal-warn fu fu5" style="margin-top:.5rem">
@@ -1171,9 +1218,76 @@ function renderResults(){
 }
 
 window.addEventListener('resize',()=>{if(cur>TOTAL){const st=readState();const{results}=Calc.compare(st);drawChart('wealthChart',results,st.assumptions.horizonYears)}});
+
+function applyQuickAdjust(){
+  const qa=(id)=>parseFloat(document.getElementById(id)?.value)||0;
+  document.getElementById('investReturn').value=qa('qaEquityReturn');
+  document.getElementById('hdbAppreciation').value=qa('qaHdbApp');
+  document.getElementById('privAppreciation').value=qa('qaPrivApp');
+  document.getElementById('horizon').value=document.getElementById('qaHorizon')?.value||'10';
+  renderResults();
+  document.querySelector('.step-panel.active').scrollTop=0;
+}
+
+function saveToUrl(){
+  const st=readState();
+  const compact={p:st.profile,r:st.rent,h:st.hdb,v:st.privateHome,a:st.assumptions};
+  const hash=btoa(JSON.stringify(compact));
+  const url=location.origin+location.pathname+'#d='+hash;
+  navigator.clipboard.writeText(url).then(()=>{
+    const btn=document.getElementById('saveLinkBtn');
+    btn.textContent='Link copied!';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='📎 Save link (with inputs)';btn.classList.remove('copied')},2000);
+  }).catch(()=>prompt('Copy this link:',url));
+}
+
+function shareResults(){
+  const st=readState();
+  const{results,summary}=Calc.compare(st);
+  const hz=st.assumptions.horizonYears;
+  const best=summary.best;
+  let text=`Should You Buy? — My ${hz}-year projection\n\n`;
+  text+=`Best affordable path: ${best.title}\n`;
+  text+=`Projected wealth: ${Calc.money(best.totalWealth)}\n`;
+  text+=`Monthly housing: ${Calc.moneyFull(best.moHousCash)}/mo\n\n`;
+  text+='All paths:\n';
+  results.forEach(r=>{text+=`  ${r.title}: ${r.feasible?Calc.money(r.totalWealth):'Not affordable'}\n`});
+  text+='\nTry it yourself: '+location.origin+location.pathname;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=document.getElementById('shareResultsBtn');
+    btn.textContent='Copied!';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='📋 Share results (no personal data)';btn.classList.remove('copied')},2000);
+  }).catch(()=>prompt('Copy this text:',text));
+}
+
+// Load from URL hash on startup
+function loadFromHash(){
+  if(!location.hash||!location.hash.includes('d='))return;
+  try{
+    const hash=location.hash.split('d=')[1];
+    const data=JSON.parse(atob(hash));
+    const set=(id,v)=>{const el=document.getElementById(id);if(el&&v!==undefined&&v!==null)el.value=v};
+    if(data.p){
+      set('age',data.p.age);set('citizenship',data.p.citizenship);set('propCount',data.p.propCount);
+      set('grossIncome',data.p.grossIncome);set('monthlyDebt',data.p.monthlyDebt);set('monthlyLiving',data.p.monthlyLiving);
+      set('cash',data.p.cash);set('cpfOA',data.p.cpfOA);set('investments',data.p.investments);set('emergencyReserve',data.p.emergencyReserve);
+      set('familyCost',data.p.familyCost);set('salaryGrowth',(data.p.salaryGrowth||3));set('marital',data.p.marital);
+    }
+    if(data.r){set('monthlyRent',data.r.monthlyRent);set('moveInCost',data.r.moveInCost)}
+    if(data.h){set('hdbPrice',data.h.price);set('hdbLease',data.h.remainingLeaseYears);set('hdbAppreciation',(data.h.annualAppreciation*100).toFixed(1));set('hdbGrant',data.h.grant||0)}
+    if(data.v){set('privPrice',data.v.price);set('privLease',data.v.remainingLeaseYears);set('privAppreciation',(data.v.annualAppreciation*100).toFixed(1))}
+    if(data.a){set('horizon',data.a.horizonYears);set('investReturn',(data.a.investReturn*100).toFixed(0));set('equityPct',(data.a.equityPct*100).toFixed(0));set('bondReturn',((data.a.bondReturn||0.028)*100).toFixed(1));set('investPct',((data.a.investPct||0.7)*100).toFixed(0))}
+    // Auto-start
+    document.getElementById('landing').style.display='none';
+    document.getElementById('appWrap').classList.add('visible');
+    document.getElementById('navBar').classList.remove('hidden');
+    showPanel(1);updateUI();
+  }catch(e){console.log('Could not load from URL hash')}
+}
 document.getElementById('btnNext').addEventListener('click',goNext);
 document.getElementById('btnBack').addEventListener('click',goBack);
 renderPresets();applyPreset('base');updatePropTax('hdb');updatePropTax('priv');
+loadFromHash();
 </script>
 </body>
 </html>
