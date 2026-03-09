@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Should You Buy? — Singapore Property Decision Tool</title>
 <meta name="description" content="An agent says it is a good deal. Is it? Figure out if you should buy, rent, or wait. Free tool for Singapore, no sign-up, runs on your device.">
-<meta property="og:title" content="Should You Buy? — Figure out if buying makes sense for you">
-<meta property="og:description" content="An agent says it is a good deal. Is it? Compare buying (HDB or condo) against renting or waiting, with your own numbers. Free, no sign-up, no ads. Just honest math.">
+<meta property="og:title" content="What does the math actually say? — SG Property vs Stocks">
+<meta property="og:description" content="Property, stocks, bonds, or some combination? Free tool that projects your wealth across different paths based on historical returns and your actual numbers. No sign-up, open source.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://l-t-x-o.github.io/should-you-buy-sg/og-image.png">
 <meta property="og:url" content="https://l-t-x-o.github.io/should-you-buy-sg/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Should You Buy? — SG Property Decision Tool">
-<meta name="twitter:description" content="An agent says it is a good deal. Is it? Compare buying, renting, or waiting with your own numbers. Free, open source.">
+<meta name="twitter:title" content="What does the math actually say? — SG Property vs Stocks">
+<meta name="twitter:description" content="Property, stocks, bonds, or some combination? Free wealth projection tool for Singapore. No sign-up, open source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -314,9 +314,8 @@ details.adv .adv-grid{margin-top:.75rem}
 <!-- ═══════ LANDING PAGE ═══════ -->
 <div class="landing" id="landing">
   <div class="l-badge">Free tool</div>
-  <p style="font-size:.88rem;font-weight:500;color:var(--text2);margin-bottom:.65rem;max-width:400px;line-height:1.5">Built by Leonard, a regular Singaporean figuring out finances like the rest of us.</p>
-  <h1 class="l-title">How will your wealth grow<em>?</em></h1>
-  <p class="l-sub">Many people believe Singapore property is the best way to build wealth. Maybe, maybe not. This tool helps you project your wealth based on how you split it between equities, bonds, and specific Singapore properties, using historical averages and your actual numbers.</p>
+  <h1 class="l-title">What does the math actually say<em>?</em></h1>
+  <p class="l-sub">Property, stocks, bonds, or some combination? This tool projects your wealth across different paths based on historical returns and your actual numbers, so you can decide for yourself.</p>
   <div class="l-features">
     <div class="l-feat">
       <div class="l-feat-icon">🏠</div>
@@ -324,18 +323,18 @@ details.adv .adv-grid{margin-top:.75rem}
     </div>
     <div class="l-feat">
       <div class="l-feat-icon">📊</div>
-      <div><strong>Based on real historical data.</strong> Choose from popular ETFs like VWRA or CSPX with actual 10-year returns. Property appreciation uses the range you set.</div>
+      <div><strong>Based on real historical data.</strong> Choose from popular ETFs like VWRA or CSPX with actual 10-year returns. Set your own property appreciation based on what you believe.</div>
     </div>
     <div class="l-feat">
       <div class="l-feat-icon">⚖️</div>
-      <div><strong>Understand the tradeoffs.</strong> Property concentrates your wealth in one Singapore asset. Index funds spread it across thousands of companies globally. Both have risks.</div>
+      <div><strong>Understand the tradeoffs.</strong> Property concentrates wealth in one asset. Index funds spread it globally. Both have risks. See the numbers and decide.</div>
     </div>
     <div class="l-feat">
       <div class="l-feat-icon">🔒</div>
       <div><strong>100% private. Open source.</strong> Your data stays on your device. The <a href="https://github.com/l-t-x-o/should-you-buy-sg" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">source code is public</a> so you can verify every calculation.</div>
     </div>
   </div>
-  <button class="l-cta" id="startBtn">Try it now</button>
+  <button class="l-cta" id="startBtn">Run the numbers</button>
   <p class="l-time">Takes about 3 minutes. All you need is a rough idea of your income, savings, and what you are considering.</p>
   <p style="font-size:.65rem;color:var(--subtle);max-width:380px;line-height:1.5;margin-top:.75rem">This tool produces projections based on your assumptions, not financial advice. Always do your own research and consult a qualified professional.</p>
   <div class="l-trust">
@@ -347,6 +346,7 @@ details.adv .adv-grid{margin-top:.75rem}
     <a href="https://buymeacoffee.com/ltxo" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">Like it? Buy him an iTea 🧋</a>
     <a href="https://forms.gle/QDU2FmEUkWHw9nEy6" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline">Give feedback</a>
   </div>
+  <p style="font-size:.65rem;color:var(--subtle);margin-top:1.5rem;max-width:380px;line-height:1.5;text-align:center">Built by Leonard, a regular Singaporean figuring it out like the rest of us. Made with Claude, a spreadsheet, and too much bubble tea.</p>
 </div>
 
 <!-- ═══════ APP ═══════ -->
@@ -1208,7 +1208,7 @@ function renderResults(){
       <div class="legal-warn-head"><span class="legal-warn-icon">⚠️</span><span class="legal-warn-title">Important reminder</span></div>
       <div class="legal-warn-text">All figures above are <strong>projections, not guarantees</strong>. Actual outcomes depend on market conditions, policy changes, and personal circumstances that this tool cannot predict. This is not financial advice. The creator of this tool is not a licensed financial advisor and assumes no responsibility for any losses or decisions arising from use of this tool. Always do your own research and consult a qualified professional before making property or investment decisions.</div>
     </div>
-    <div class="attrib">Built by Leonard, a regular Singaporean figuring it out like the rest of us.</div>
+    <div class="attrib">Built by Leonard, a regular Singaporean figuring it out like the rest of us. Made with Claude, a spreadsheet, and too much bubble tea.</div>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;font-size:.72rem;padding-bottom:1.5rem">
       <a href="https://buymeacoffee.com/ltxo" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">Like it? Buy him an iTea 🧋</a>
       <a href="https://forms.gle/QDU2FmEUkWHw9nEy6" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline">Give feedback</a>
