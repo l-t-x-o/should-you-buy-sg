@@ -511,6 +511,7 @@ details.adv .adv-grid{margin-top:.75rem}
 
   <div class="card" style="background:var(--blue-light);border-color:rgba(37,99,235,0.15)">
     <div style="font-size:.78rem;color:#1e40af;line-height:1.6"><strong>What about BTO?</strong> This tool focuses on resale HDB and private property because those are decisions you can act on now with known prices. BTO flats are not modeled because the timeline depends on a ballot, and waiting times can range from 3 to 6 years. If you are considering BTO, note that first-timer couples can receive <strong>CPF housing grants of up to S$80,000</strong> (Enhanced CPF Housing Grant + Family Grant), which can significantly reduce the effective price. You can use this tool by entering the BTO price minus applicable grants as the 'Resale HDB' price, and setting appreciation conservatively since newer BTO flats often take years to catch up to resale market levels.</div>
+    <div style="font-size:.72rem;color:#3b5998;line-height:1.5;margin-top:.65rem;padding-top:.65rem;border-top:1px solid rgba(37,99,235,0.12)"><strong>Good to know:</strong> On a resale purchase, the buyer typically pays no agent commission (the seller's agent co-brokes with your agent at 1% of sale price, paid by the seller). On a new launch, the developer pays your agent 3-5% of the purchase price. This difference means agents have a financial incentive to recommend new launches over resale. This is not inherently wrong, but it is worth being aware of when evaluating advice.</div>
   </div>
 
   <div class="prop-grid">
@@ -528,7 +529,10 @@ details.adv .adv-grid{margin-top:.75rem}
         <div class="paste-result" id="hdbPasteResult"></div>
       </div>
       <div class="fg" style="gap:.75rem">
-        <div class="field"><label>Price (S$)</label><input type="number" id="hdbPrice" value="580000" step="1000" inputmode="decimal" onchange="autoEstRent('hdb')"></div>
+        <div class="field"><label>Price (S$)</label><input type="number" id="hdbPrice" value="580000" step="1000" inputmode="decimal" onchange="autoEstRent('hdb');updatePSF('hdb')"></div>
+        <div class="field"><label>Floor area (sq ft)<span class="f-opt">optional</span></label><input type="number" id="hdbArea" value="" placeholder="e.g. 990" step="1" inputmode="numeric" onchange="updatePSF('hdb')">
+          <p class="f-calc" id="hdbPSF"></p>
+        </div>
         <div class="field"><label>CPF housing grant (S$)<span class="tip" data-tip="First-timer SC couples can receive up to S$80,000 in grants (Enhanced CPF Housing Grant up to S$80,000, plus proximity and family grants). Singles 35+ may qualify for up to S$40,000. Check HDB's eligibility tool for your exact amount.">?</span></label>
           <input type="number" id="hdbGrant" value="0" step="1000" inputmode="decimal">
           <p class="f-hint">Enter 0 if not eligible or unsure. The grant reduces your effective purchase price. First-timer SC couples: up to S$80,000. Singles 35+: up to S$40,000.</p>
@@ -606,7 +610,11 @@ details.adv .adv-grid{margin-top:.75rem}
           </div>
           <div class="bridge-banner show">You will need to rent until the unit is completed. This cost is factored into the model as cash drag during the waiting period.</div>
         </div>
-        <div class="field" style="margin-top:.5rem"><label>Price (S$)</label><input type="number" id="privPrice" value="1300000" step="1000" inputmode="decimal" onchange="autoEstRent('priv')"></div>
+        <div class="field" style="margin-top:.5rem"><label>Price (S$)</label><input type="number" id="privPrice" value="1300000" step="1000" inputmode="decimal" onchange="autoEstRent('priv');updatePSF('priv')"></div>
+        <div class="field"><label>Floor area (sq ft)<span class="f-opt">optional</span></label><input type="number" id="privArea" value="" placeholder="e.g. 700" step="1" inputmode="numeric" onchange="updatePSF('priv')">
+          <p class="f-calc" id="privPSF"></p>
+        </div>
+        <div class="feas-banner" id="newLaunchWarn" style="display:none;background:var(--orange-light);color:#92400e;border:1px solid rgba(230,126,34,0.2);margin-bottom:.5rem"></div>
         <div class="field"><label>Remaining lease (years)</label><input type="number" id="privLease" value="99" min="20" max="999" inputmode="numeric">
           <p class="f-hint">Freehold = 999. New 99-year leasehold = 99.</p>
         </div>
@@ -1036,7 +1044,27 @@ function autoEstRent(kind){
   const yield_=kind==='hdb'?0.035:0.03;const estRent=Math.round(price*yield_/12/50)*50;
   const el=document.getElementById(kind==='hdb'?'hdbMarketRent':'privMarketRent');if(el)el.value=estRent;updatePropTax(kind);
 }
-function togglePrivType(){document.getElementById('topWrap').style.display=(document.getElementById('privType').value==='resale')?'none':'block'}
+function togglePrivType(){
+  const type=document.getElementById('privType').value;
+  document.getElementById('topWrap').style.display=(type==='resale')?'none':'block';
+  const warn=document.getElementById('newLaunchWarn');
+  if(type==='newlaunch'){
+    const price=parseFloat(document.getElementById('privPrice')?.value)||0;
+    const estResale=Math.round(price/1.35/1000)*1000;
+    warn.style.display='block';
+    warn.innerHTML='<strong>Good to know:</strong> New launches in Singapore typically trade at 25-40% above comparable resale units. A comparable resale unit might cost around S$'+estResale.toLocaleString()+'. Consider running a second scenario at the resale price to compare.';
+  }else{warn.style.display='none'}
+  debounceFeas();
+}
+
+function updatePSF(kind){
+  const prefix=kind==='hdb'?'hdb':'priv';
+  const price=parseFloat(document.getElementById(prefix+'Price')?.value)||0;
+  const area=parseFloat(document.getElementById(prefix+'Area')?.value)||0;
+  const el=document.getElementById(prefix+'PSF');
+  if(el&&area>0&&price>0){const psf=Math.round(price/area);el.textContent='S$'+psf.toLocaleString()+' per sq ft (PSF)'}
+  else if(el){el.textContent=''}
+}
 function toggleMore(kind){
   const btn=document.getElementById(kind+'MoreBtn');const fields=document.getElementById(kind+'MoreFields');
   const open=fields.classList.toggle('show');btn.classList.toggle('open',open);btn.textContent=open?'Hide details':'More details (fees, reno, tax)';
@@ -1137,6 +1165,7 @@ function renderResults(){
     ${row('Why not?',r=>r.feasible?'<span style="color:var(--subtle)">--</span>':`<span style="color:var(--red);font-size:.72rem">${r.warns.filter(w=>w.includes('cash')||w.includes('cashflow')||w.includes('TDSR')||w.includes('MSR')||w.includes('available')).join(' ')||r.warns[0]||'See warnings below'}</span>`)}
     ${sec('Cost to enter')}
     ${row('Upfront cash',r=>r.upfront?mf(r.upfront):'--')}
+    ${row('Effective price',r=>{if(!r.salePrice&&!r.upfront)return'--';const eff=(r.bridgeTotalCost||0)+(r.key==='hdb'||r.key==='private'?r.upfront:0);return eff>0&&r.bridgeTotalCost>0?mf(r.upfront)+' <span style="color:var(--orange);font-size:.65rem">(incl. '+mf(r.bridgeTotalCost)+' bridge rent)</span>':r.upfront?mf(r.upfront):'--'})}
     ${row('CPF used',r=>r.upfrontCpf?mf(r.upfrontCpf):'--')}
     ${row('BSD',r=>r.bsdAmt?mf(r.bsdAmt):'--')}
     ${row('ABSD',r=>r.absdAmt?mf(r.absdAmt):'--')}
@@ -1144,6 +1173,12 @@ function renderResults(){
     ${row('Housing cost / mo',r=>mf(r.moHousCash))}
     ${row('Investable / mo',r=>r.moInvest>=0?mf(r.moInvest):`<span class="warn-cell">${mf(r.moInvest)}</span>`)}
     ${row('Comfort',r=>`<span class="pill ${r.comfort.tone}" style="font-size:.6rem">${r.comfort.label}</span>`)}
+    ${sec('Survival stress test')}
+    ${row('Months at zero income',r=>{const reserve=st.profile.emergencyReserve||0;const moCost=(r.moHousCash||0)+(st.profile.monthlyLiving||3000);const months=moCost>0?Math.floor(reserve/moCost):99;const color=months>=24?'var(--green)':months>=12?'var(--orange)':'var(--red)';return'<strong style="color:'+color+'">'+months+' months</strong>'})}
+    ${sec('Interest rate sensitivity')}
+    ${row('Payment at current rate',r=>r.moMortgage>0?mf(r.moMortgage)+'/mo':'--')}
+    ${row('Payment at +1%',r=>{if(!r.moMortgage||r.key==='wait'||r.key==='rent')return'--';const k=r.key;const prop=k==='hdb'?st.hdb:st.privateHome;const uhl=prop.loanType==='hdb';const rate=(uhl?st.assumptions.hdbLoanRate:st.assumptions.bankRate)+0.01;const term=uhl?st.assumptions.hdbLoanTermYears:st.assumptions.bankLoanTermYears;const ltv=uhl?.80:.75;const grantAmt=k==='hdb'?(prop.grant||0):0;const effP=Math.max(0,(prop.price||0)-grantAmt);const loan=effP*ltv;const p=Calc.n(loan)*rate/12/(1-Math.pow(1+rate/12,-term*12));return mf(Math.round(p))+'/mo'})}
+    ${row('Payment at +2%',r=>{if(!r.moMortgage||r.key==='wait'||r.key==='rent')return'--';const k=r.key;const prop=k==='hdb'?st.hdb:st.privateHome;const uhl=prop.loanType==='hdb';const rate=(uhl?st.assumptions.hdbLoanRate:st.assumptions.bankRate)+0.02;const term=uhl?st.assumptions.hdbLoanTermYears:st.assumptions.bankLoanTermYears;const ltv=uhl?.80:.75;const grantAmt=k==='hdb'?(prop.grant||0):0;const effP=Math.max(0,(prop.price||0)-grantAmt);const loan=effP*ltv;const p=Calc.n(loan)*rate/12/(1-Math.pow(1+rate/12,-term*12));return'<span style="color:var(--orange)">'+mf(Math.round(p))+'/mo</span>'})}
     ${sec('Projected wealth at '+hz+' years')}
     ${row('Total wealth',r=>r.feasible?'<strong>'+m(r.totalWealth)+'</strong>':'<span class="na">Not affordable</span>')}
     ${row('Liquid wealth',r=>{const ly=r.yearly&&r.yearly.length?r.yearly[r.yearly.length-1]:null;return ly?m(ly.portfolio+(r.cashProc||0)+(st.profile.emergencyReserve||0)):'--'})}
@@ -1155,6 +1190,10 @@ function renderResults(){
     ${sec('Risk metrics')}
     ${row('Break-even appr.',r=>r.bea!==null?r.bea+'% / yr':'--')}
     ${row('TDSR',r=>r.tdsrCheck.ratio>0?`${r.tdsrCheck.ratio}% <span class="reg-status ${r.tdsrCheck.pass?'pass':'fail'}" style="font-size:.55rem">${r.tdsrCheck.pass?'Pass':'Fail'}</span>`:'--')}
+    ${results.some(r=>r.key==='private')?sec('SSD if you exit early (private only)'):''}
+    ${results.some(r=>r.key==='private')?row('Sell in year 1',r=>{if(r.key!=='private')return'--';const sp=r.salePrice*(1/Math.pow(1+(r.yearly&&r.yearly.length?st.privateHome.annualAppreciation:0.03),hz-1));return'<span style="color:var(--red)">'+mf(Math.round(sp*0.12))+' (12%)</span>'}):''}
+    ${results.some(r=>r.key==='private')?row('Sell in year 2',r=>{if(r.key!=='private')return'--';return'<span style="color:var(--orange)">'+mf(Math.round(st.privateHome.price*Math.pow(1+st.privateHome.annualAppreciation,2)*0.08))+' (8%)</span>'}):''}
+    ${results.some(r=>r.key==='private')?row('Sell in year 3',r=>{if(r.key!=='private')return'--';return mf(Math.round(st.privateHome.price*Math.pow(1+st.privateHome.annualAppreciation,3)*0.04))+' (4%)'}):''}
     </tbody></table></div>`;
 
   // Path detail cards (collapsed, for warnings)
