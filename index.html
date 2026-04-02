@@ -331,12 +331,12 @@ details.adv .adv-grid{margin-top:.75rem}
     </div>
     <div class="l-feat">
       <div class="l-feat-icon">🔒</div>
-      <div><strong>100% private. Open source.</strong> Your data stays on your device. The <a href="https://github.com/l-t-x-o/should-you-buy-sg" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">source code is public</a> so you can verify every calculation.</div>
+      <div><strong>Private by design. Open source.</strong> No calculation data is sent to any server. The <a href="https://github.com/l-t-x-o/should-you-buy-sg" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">source code is public</a> so you can verify every calculation.</div>
     </div>
   </div>
   <button class="l-cta" id="startBtn">Run the numbers</button>
   <p class="l-time">Takes about 3 minutes. All you need is a rough idea of your income, savings, and what you are considering.</p>
-  <p style="font-size:.65rem;color:var(--subtle);max-width:380px;line-height:1.5;margin-top:.75rem">This tool produces projections based on your assumptions, not financial advice. Always do your own research and consult a qualified professional.</p>
+  <p style="font-size:.65rem;color:var(--subtle);max-width:380px;line-height:1.5;margin-top:.75rem">This is a first-pass scenario calculator for straightforward cases. It is not a loan-approval, tax, or legal eligibility engine. Always consult a qualified professional.</p>
   <div class="l-trust">
     <span>No sign-up</span>
     <span>100% free</span>
@@ -510,7 +510,7 @@ details.adv .adv-grid{margin-top:.75rem}
   <p class="s-sub">Enter realistic shortlist numbers. Just the price, lease, and loan type are enough to start. Fine-tune the rest if you want.</p>
 
   <div class="card" style="background:var(--blue-light);border-color:rgba(37,99,235,0.15)">
-    <div style="font-size:.78rem;color:#1e40af;line-height:1.6"><strong>What about BTO?</strong> This tool focuses on resale HDB and private property because those are decisions you can act on now with known prices. BTO flats are not modeled because the timeline depends on a ballot, and waiting times can range from 3 to 6 years. If you are considering BTO, note that first-timer couples can receive <strong>CPF housing grants of up to S$80,000</strong> (Enhanced CPF Housing Grant + Family Grant), which can significantly reduce the effective price. You can use this tool by entering the BTO price minus applicable grants as the 'Resale HDB' price, and setting appreciation conservatively since newer BTO flats often take years to catch up to resale market levels.</div>
+    <div style="font-size:.78rem;color:#1e40af;line-height:1.6"><strong>What about BTO?</strong> This tool focuses on resale HDB and private property because those are decisions you can act on now with known prices. BTO flats are not modeled because the timeline depends on a ballot, and waiting times can range from 3 to 6 years. If you are considering BTO, note that first-timer couples can receive <strong>CPF housing grants of up to S$120,000</strong> (Enhanced CPF Housing Grant + Family Grant), which can significantly reduce the effective price. You can use this tool by entering the BTO price minus applicable grants as the 'Resale HDB' price, and setting appreciation conservatively since newer BTO flats often take years to catch up to resale market levels.</div>
     <div style="font-size:.72rem;color:#3b5998;line-height:1.5;margin-top:.65rem;padding-top:.65rem;border-top:1px solid rgba(37,99,235,0.12)"><strong>Good to know:</strong> On a resale purchase, the buyer typically pays no agent commission (the seller's agent co-brokes with your agent at 1% of sale price, paid by the seller). On a new launch, the developer pays your agent 3-5% of the purchase price. This difference means agents have a financial incentive to recommend new launches over resale. This is not inherently wrong, but it is worth being aware of when evaluating advice.</div>
   </div>
 
@@ -533,9 +533,9 @@ details.adv .adv-grid{margin-top:.75rem}
         <div class="field"><label>Floor area (sq ft)<span class="f-opt">optional</span></label><input type="number" id="hdbArea" value="" placeholder="e.g. 990" step="1" inputmode="numeric" onchange="updatePSF('hdb')">
           <p class="f-calc" id="hdbPSF"></p>
         </div>
-        <div class="field"><label>CPF housing grant (S$)<span class="tip" data-tip="First-timer SC couples can receive up to S$80,000 in grants (Enhanced CPF Housing Grant up to S$80,000, plus proximity and family grants). Singles 35+ may qualify for up to S$40,000. Check HDB's eligibility tool for your exact amount.">?</span></label>
+        <div class="field"><label>CPF housing grant (S$)<span class="tip" data-tip="First-timer SC couples can receive up to S$120,000 in grants (Enhanced CPF Housing Grant up to S$80,000, plus proximity and family grants). Singles 35+ may qualify for up to S$40,000. Check HDB's eligibility tool for your exact amount.">?</span></label>
           <input type="number" id="hdbGrant" value="0" step="1000" inputmode="decimal">
-          <p class="f-hint">Enter 0 if not eligible or unsure. The grant reduces your effective purchase price. First-timer SC couples: up to S$80,000. Singles 35+: up to S$40,000.</p>
+          <p class="f-hint">Enter 0 if not eligible or unsure. The grant reduces your effective purchase price. First-timer SC couples: up to S$120,000. Singles 35+: up to S$40,000.</p>
         </div>
         <div class="field"><label>Remaining lease (years)</label><input type="number" id="hdbLease" value="85" min="20" max="99" inputmode="numeric"></div>
         <div class="field"><label>Loan type</label>
@@ -732,11 +732,11 @@ details.adv .adv-grid{margin-top:.75rem}
 const n=v=>Number.isFinite(+v)?+v:0,max0=v=>Math.max(0,n(v)),round=(v,d=0)=>{const p=10**d;return Math.round(n(v)*p)/p};
 function money(v){const val=n(v);if(Math.abs(val)>=1e6)return'S$'+round(val/1e6,1)+'M';return new Intl.NumberFormat('en-SG',{style:'currency',currency:'SGD',maximumFractionDigits:0}).format(val)}
 function moneyFull(v){return new Intl.NumberFormat('en-SG',{style:'currency',currency:'SGD',maximumFractionDigits:0}).format(n(v))}
-function calcPropTax(monthlyRent){const av=n(monthlyRent)*12;const tiers=[[8000,0],[22000,.04],[10000,.05],[15000,.06],[15000,.07],[15000,.08],[15000,.09],[Infinity,.10]];let rem=av,tax=0;for(const[cap,rate]of tiers){const s=Math.min(rem,cap);if(s<=0)break;tax+=s*rate;rem-=s}return Math.round(tax/12)}
-function calcPropTaxNonOwner(monthlyRent){const av=n(monthlyRent)*12;const tiers=[[30000,.10],[15000,.12],[15000,.13],[15000,.14],[15000,.15],[15000,.16],[15000,.17],[15000,.18],[15000,.19],[Infinity,.20]];let rem=av,tax=0;for(const[cap,rate]of tiers){const s=Math.min(rem,cap);if(s<=0)break;tax+=s*rate;rem-=s}return Math.round(tax/12)}
+function calcPropTax(monthlyRent){const av=n(monthlyRent)*12;const tiers=[[12000,0],[8000,.04],[10000,.05],[15000,.06],[15000,.07],[15000,.08],[15000,.09],[15000,.10],[15000,.12],[15000,.14],[Infinity,.16]];let rem=av,tax=0;for(const[cap,rate]of tiers){const s=Math.min(rem,cap);if(s<=0)break;tax+=s*rate;rem-=s}return Math.round(tax/12)}
+function calcPropTaxNonOwner(monthlyRent){const av=n(monthlyRent)*12;const tiers=[[30000,.12],[15000,.20],[15000,.28],[Infinity,.36]];let rem=av,tax=0;for(const[cap,rate]of tiers){const s=Math.min(rem,cap);if(s<=0)break;tax+=s*rate;rem-=s}return Math.round(tax/12)}
 function bsd(price){const tiers=[[180000,.01],[180000,.02],[640000,.03],[500000,.04],[1500000,.05],[Infinity,.06]];let rem=n(price),tot=0;for(const[cap,rate]of tiers){const s=Math.min(rem,cap);if(s<=0)break;tot+=s*rate;rem-=s}return Math.floor(tot)}
 function absdRate(cit,cnt){if(cit==='SC'){if(cnt<=0)return 0;if(cnt===1)return .20;return .30}if(cit==='SPR'){if(cnt<=0)return .05;if(cnt===1)return .30;return .35}return .60}
-function ssdRate(yrs){if(yrs<1)return .12;if(yrs<2)return .08;if(yrs<3)return .04;return 0}
+function ssdRate(yrs){if(yrs<1)return .16;if(yrs<2)return .12;if(yrs<3)return .08;if(yrs<4)return .04;return 0}
 function pmt(pr,ar,yr){pr=n(pr);ar=n(ar);yr=n(yr);if(pr<=0||yr<=0)return 0;const r=ar/12,p=yr*12;if(r===0)return pr/p;return pr*r/(1-Math.pow(1+r,-p))}
 function loanBal(pr,ar,yr,yp){pr=n(pr);ar=n(ar);yr=n(yr);yp=n(yp);if(pr<=0)return 0;const pay=pmt(pr,ar,yr),r=ar/12,m=Math.min(yr*12,yp*12);if(r===0)return max0(pr-pay*m);return max0(pr*Math.pow(1+r,m)-pay*((Math.pow(1+r,m)-1)/r))}
 function fv(init,mo,ar,yr){init=n(init);mo=n(mo);ar=n(ar);yr=n(yr);const r=ar/12,p=yr*12;if(r===0)return init+mo*p;return init*Math.pow(1+r,p)+mo*((Math.pow(1+r,p)-1)/r)}
@@ -753,13 +753,15 @@ function cpfOARate(age){if(age<=55)return .23;if(age<=60)return .15;if(age<=65)r
 function simProperty(kind,prop,inp){
   const p=inp.profile,a=inp.assumptions,warns=[];const isHdb=kind==='hdb';
   const useHdbLoan=prop.loanType==='hdb';const rate=useHdbLoan?a.hdbLoanRate:a.bankRate;
-  const term=useHdbLoan?a.hdbLoanTermYears:a.bankLoanTermYears;const ltv=useHdbLoan?.80:.75;const minCashPct=useHdbLoan?0:.05;const hz=a.horizonYears;
+  const term=useHdbLoan?a.hdbLoanTermYears:a.bankLoanTermYears;const ltv=.75;const minCashPct=useHdbLoan?0:.05;const hz=a.horizonYears;
   const isNL=!isHdb&&(prop.purchaseType==='newlaunch'||prop.purchaseType==='balance');
   const topWait=isNL?n(prop.topYears):0;const bridgeRent=isNL?n(prop.bridgeRent):0;
   const isRentOut=prop.occupancy==='rentout';
-  const rentalInc=isRentOut?n(prop.rentalIncome):0;
+  const rentalIncGross=isRentOut?n(prop.rentalIncome):0;
+  const rentalInc=round(rentalIncGross*0.85); // 15% haircut for vacancy, agent fees, maintenance
   const ownHousCost=isRentOut?(prop.ownHousing==='rent'?n(prop.ownRent):n(p.familyCost)):0;
-  if(isHdb&&p.marital==='single'&&p.age<35)warns.push('Singles under 35 cannot buy resale HDB. The Single Singapore Citizen scheme requires age 35+.');
+  const singlesBlocked=isHdb&&p.marital==='single'&&p.age<35;
+  if(singlesBlocked)warns.push('Singles under 35 cannot buy resale HDB. The Single Singapore Citizen scheme requires age 35+.');
   if(isHdb&&isRentOut&&hz<5)warns.push('HDB flats cannot be rented out until after the 5-year MOP. Rental income is only modeled from year 6 onwards.');
   const blocked=cpfBlocked(p.age,prop.remainingLeaseYears);const prorated=cpfProrated(p.age,prop.remainingLeaseYears);
   if(blocked)warns.push('CPF cannot be used. The remaining lease does not meet age-plus-lease requirements.');
@@ -772,26 +774,29 @@ function simProperty(kind,prop,inp){
   const absdAmt=(p.citizenship==='SC'&&p.propCount===0)?0:n(prop.price)*absdRate(p.citizenship,p.propCount);
   const monthlyTax=isRentOut?calcPropTaxNonOwner(prop.marketRent):calcPropTax(prop.marketRent);
   const bridgeTotal=bridgeRent*12*topWait;
-  const upfront=round(cashDown+bsdAmt+absdAmt+n(prop.legal)+n(prop.renovation)+bridgeTotal);
+  const upfront=round(cashDown+bsdAmt+absdAmt+n(prop.legal)+n(prop.renovation));
   const upfrontCpf=round(cpfDown);const cashAvail=max0(n(p.cash)-n(p.emergencyReserve)+(p.deployInvestments?n(p.investments):0));
   const moMort=pmt(loan,rate,term);const cpfCap=Math.min(n(p.grossIncome),8000);
   const moCpf=blocked?0:Math.min(moMort,cpfCap*cpfOARate(p.age));
-  const tdsrC=tdsr(moMort,p.monthlyDebt,p.grossIncome);const msrC=isHdb&&useHdbLoan?msr(moMort,p.grossIncome):null;
-  if(!tdsrC.pass)warns.push('TDSR breached at '+tdsrC.ratio+'%. Banks will reject this loan. The limit is 55%.');
-  if(msrC&&!msrC.pass)warns.push('MSR breached at '+msrC.ratio+'%. HDB loan will be rejected. The limit is 30%.');
+  // Stress test: MAS uses 4% floor for bank loans, HDB uses 3% floor
+  const stressRate=useHdbLoan?Math.max(rate,0.03):Math.max(rate,0.04);
+  const stressMort=pmt(loan,stressRate,term);
+  const tdsrC=tdsr(stressMort,p.monthlyDebt,p.grossIncome);const msrC=isHdb&&useHdbLoan?msr(stressMort,p.grossIncome):null;
+  if(!tdsrC.pass)warns.push('TDSR breached at '+tdsrC.ratio+'% (tested at '+round(stressRate*100,1)+'% stress rate). The limit is 55%.');
+  if(msrC&&!msrC.pass)warns.push('MSR breached at '+msrC.ratio+'% (tested at '+round(stressRate*100,1)+'% stress rate). The limit is 30%.');
   const mntSh=n(prop.monthlyFees)*n(a.maintenanceShockPct);
   let moHous;
   if(isRentOut){const pc=max0(moMort-moCpf)+n(prop.monthlyFees)+monthlyTax+mntSh;moHous=round(max0(pc-rentalInc)+ownHousCost)}
   else{moHous=round(max0(moMort-moCpf)+n(prop.monthlyFees)+monthlyTax+mntSh)}
-  let feasible=cashAvail>=upfront;if(cashAvail<upfront)warns.push('Upfront cash required exceeds what you have after reserves.');
+  let feasible=cashAvail>=upfront&&!singlesBlocked;if(singlesBlocked)warns.push('This path is not legally available to you.');if(cashAvail<upfront&&!singlesBlocked)warns.push('Upfront cash required exceeds what you have after reserves.');
   const moFree=round(n(p.grossIncome)-n(p.monthlyDebt)-n(p.monthlyLiving)-moHous);
   if(moFree<0){feasible=false;warns.push('Monthly cashflow is negative after move-in.')}
   if(isHdb&&hz<5)warns.push('Holding period is under the 5-year HDB minimum occupation period.');
-  if(!isHdb&&hz<3)warns.push('Selling within 3 years triggers Seller\'s Stamp Duty up to 12%.');
+  if(!isHdb&&hz<3)warns.push('Selling within 4 years triggers Seller\'s Stamp Duty up to 16% (purchases from Jul 2025).');
   if(isNL&&topWait>=hz)warns.push('Holding period is shorter than the wait for TOP.');
   if(isNL)warns.push('Bridge rental of '+moneyFull(bridgeTotal)+' over '+topWait+' year'+(topWait>1?'s':'')+' is added to upfront costs.');
   if(grantAmt>0)warns.push('CPF housing grant of '+moneyFull(grantAmt)+' applied. Effective price: '+moneyFull(effectivePrice)+'.');
-  if(isRentOut)warns.push('Buy-to-rent scenario. Property tax at non-owner-occupied rates (10-20%).'+(isHdb?' HDB rental income only applies after 5-year MOP.':''));
+  if(isRentOut)warns.push('Buy-to-rent scenario. Property tax at non-owner-occupied rates (12-36%). Rental income is also taxable as personal income (not modeled). A 15% haircut is applied for vacancy, agent fees, and maintenance.'+(isHdb?' HDB rental income only applies after 5-year MOP.':''));
   const yearly=[];let initInv=max0(cashAvail-upfront)+(p.deployInvestments?0:n(p.investments));let port=initInv;
   const blRet=n(a.equityPct)*n(a.investReturn)+n(a.bondPct)*n(a.bondReturn);const iPct=n(a.investPct);
   let gInc=n(p.grossIncome);let lExp=n(p.monthlyLiving);
@@ -851,8 +856,10 @@ function compare(inp){
   allRes.push(simRent(inp));
   if(inp.hdb.enabled)allRes.push(simProperty('hdb',inp.hdb,inp));
   if(inp.privateHome.enabled)allRes.push(simProperty('private',inp.privateHome,inp));
-  const waitW=waitR.totalWealth;
-  for(const it of allRes){if(it.key!=='hdb'&&it.key!=='private')continue;let lo=-.03,hi=.12;for(let i=0;i<30;i++){const mid=(lo+hi)/2;const c=JSON.parse(JSON.stringify(inp));if(it.key==='hdb')c.hdb.annualAppreciation=mid;else c.privateHome.annualAppreciation=mid;const t=simProperty(it.key,it.key==='hdb'?c.hdb:c.privateHome,c);if(t.totalWealth>=waitW)hi=mid;else lo=mid}it.bea=round(hi*100,1)}
+  const nonBuyPaths=allRes.filter(r=>(r.key==='wait'||r.key==='rent')&&r.feasible);
+  const bestNonBuy=nonBuyPaths.length?nonBuyPaths.reduce((a,c)=>c.totalWealth>a.totalWealth?c:a,nonBuyPaths[0]):{totalWealth:0};
+  const benchW=bestNonBuy.totalWealth||0;
+  for(const it of allRes){if(it.key!=='hdb'&&it.key!=='private')continue;let lo=-.03,hi=.12;for(let i=0;i<30;i++){const mid=(lo+hi)/2;const c=JSON.parse(JSON.stringify(inp));if(it.key==='hdb')c.hdb.annualAppreciation=mid;else c.privateHome.annualAppreciation=mid;const t=simProperty(it.key,it.key==='hdb'?c.hdb:c.privateHome,c);if(t.totalWealth>=benchW)hi=mid;else lo=mid}it.bea=round(hi*100,1)}
   const sens=runSens(inp);
   const sorted=[...allRes].sort((a,b)=>b.totalWealth-a.totalWealth);
   // Best FEASIBLE path (this is what we recommend)
@@ -885,22 +892,23 @@ function quickFeasibility(kind,inp){
   const p=inp.profile,a=inp.assumptions,prop=kind==='hdb'?inp.hdb:inp.privateHome;const isHdb=kind==='hdb';
   const uhl=prop.loanType==='hdb';const rate=uhl?a.hdbLoanRate:a.bankRate;const term=uhl?a.hdbLoanTermYears:a.bankLoanTermYears;
   const grantAmt=isHdb?n(prop.grant):0;const effPrice=max0(n(prop.price)-grantAmt);
-  const ltv=uhl?.80:.75;const mcp=uhl?0:.05;const loan=effPrice*ltv;const dp=effPrice-loan;
+  const ltv=.75;const mcp=uhl?0:.05;const loan=effPrice*ltv;const dp=effPrice-loan;
   const mc=effPrice*mcp;const cd=Math.min(n(p.cpfOA),max0(dp-mc));const cashD=Math.max(0,dp-cd);
   const bs=bsd(prop.price);const ab=(p.citizenship==='SC'&&p.propCount===0)?0:n(prop.price)*absdRate(p.citizenship,p.propCount);
   const isRO=prop.occupancy==='rentout';
   const mt=isRO?calcPropTaxNonOwner(prop.marketRent):calcPropTax(prop.marketRent);
   const isNL=!isHdb&&(prop.purchaseType==='newlaunch'||prop.purchaseType==='balance');
-  const bc=isNL?n(prop.bridgeRent)*12*n(prop.topYears):0;const up=cashD+bs+ab+n(prop.legal)+n(prop.renovation)+bc;
+  const up=cashD+bs+ab+n(prop.legal)+n(prop.renovation);
   const ca=max0(n(p.cash)-n(p.emergencyReserve)+(p.deployInvestments?n(p.investments):0));const mm=pmt(loan,rate,term);
   const cpf=Math.min(mm,Math.min(n(p.grossIncome),8000)*cpfOARate(p.age));const ms=n(prop.monthlyFees)*n(a.maintenanceShockPct);
   let mh;
-  if(isRO){const ri=n(prop.rentalIncome);const ownH=prop.ownHousing==='rent'?n(prop.ownRent):n(p.familyCost);const pc=max0(mm-cpf)+n(prop.monthlyFees)+mt+ms;mh=max0(pc-ri)+ownH}
+  if(isRO){const ri=round(n(prop.rentalIncome)*0.85);const ownH=prop.ownHousing==='rent'?n(prop.ownRent):n(p.familyCost);const pc=max0(mm-cpf)+n(prop.monthlyFees)+mt+ms;mh=max0(pc-ri)+ownH}
   else{mh=max0(mm-cpf)+n(prop.monthlyFees)+mt+ms}
   const mf=n(p.grossIncome)-n(p.monthlyDebt)-n(p.monthlyLiving)-mh;
   const issues=[];if(ca<up)issues.push('Upfront cash short by '+moneyFull(up-ca)+'.');if(mf<0)issues.push('Monthly cashflow negative by '+moneyFull(Math.abs(mf))+'.');
-  const td=tdsr(mm,p.monthlyDebt,p.grossIncome);if(!td.pass)issues.push('TDSR at '+td.ratio+'% exceeds 55%.');
-  if(isHdb&&uhl){const m=msr(mm,p.grossIncome);if(!m.pass)issues.push('MSR at '+m.ratio+'% exceeds 30%.')}
+  const stressR=uhl?Math.max(rate,0.03):Math.max(rate,0.04);const stressM=pmt(loan,stressR,term);
+  const td=tdsr(stressM,p.monthlyDebt,p.grossIncome);if(!td.pass)issues.push('TDSR at '+td.ratio+'% exceeds 55% (stress-tested at '+round(stressR*100,1)+'%).');
+  if(isHdb&&uhl){const m=msr(stressM,p.grossIncome);if(!m.pass)issues.push('MSR at '+m.ratio+'% exceeds 30% (stress-tested at '+round(stressR*100,1)+'%).')}
   if(isHdb&&p.marital==='single'&&p.age<35)issues.push('Singles under 35 cannot buy resale HDB.');
   return issues;
 }
@@ -1177,8 +1185,8 @@ function renderResults(){
     ${row('Months at zero income',r=>{const reserve=st.profile.emergencyReserve||0;const moCost=(r.moHousCash||0)+(st.profile.monthlyLiving||3000);const months=moCost>0?Math.floor(reserve/moCost):99;const color=months>=24?'var(--green)':months>=12?'var(--orange)':'var(--red)';return'<strong style="color:'+color+'">'+months+' months</strong>'})}
     ${sec('Interest rate sensitivity')}
     ${row('Payment at current rate',r=>r.moMortgage>0?mf(r.moMortgage)+'/mo':'--')}
-    ${row('Payment at +1%',r=>{if(!r.moMortgage||r.key==='wait'||r.key==='rent')return'--';const k=r.key;const prop=k==='hdb'?st.hdb:st.privateHome;const uhl=prop.loanType==='hdb';const rate=(uhl?st.assumptions.hdbLoanRate:st.assumptions.bankRate)+0.01;const term=uhl?st.assumptions.hdbLoanTermYears:st.assumptions.bankLoanTermYears;const ltv=uhl?.80:.75;const grantAmt=k==='hdb'?(prop.grant||0):0;const effP=Math.max(0,(prop.price||0)-grantAmt);const loan=effP*ltv;const p=Calc.n(loan)*rate/12/(1-Math.pow(1+rate/12,-term*12));return mf(Math.round(p))+'/mo'})}
-    ${row('Payment at +2%',r=>{if(!r.moMortgage||r.key==='wait'||r.key==='rent')return'--';const k=r.key;const prop=k==='hdb'?st.hdb:st.privateHome;const uhl=prop.loanType==='hdb';const rate=(uhl?st.assumptions.hdbLoanRate:st.assumptions.bankRate)+0.02;const term=uhl?st.assumptions.hdbLoanTermYears:st.assumptions.bankLoanTermYears;const ltv=uhl?.80:.75;const grantAmt=k==='hdb'?(prop.grant||0):0;const effP=Math.max(0,(prop.price||0)-grantAmt);const loan=effP*ltv;const p=Calc.n(loan)*rate/12/(1-Math.pow(1+rate/12,-term*12));return'<span style="color:var(--orange)">'+mf(Math.round(p))+'/mo</span>'})}
+    ${row('Payment at +1%',r=>{if(!r.moMortgage||r.key==='wait'||r.key==='rent')return'--';const k=r.key;const prop=k==='hdb'?st.hdb:st.privateHome;const uhl=prop.loanType==='hdb';const rate=(uhl?st.assumptions.hdbLoanRate:st.assumptions.bankRate)+0.01;const term=uhl?st.assumptions.hdbLoanTermYears:st.assumptions.bankLoanTermYears;const ltv=.75;const grantAmt=k==='hdb'?(prop.grant||0):0;const effP=Math.max(0,(prop.price||0)-grantAmt);const loan=effP*ltv;const p=Calc.n(loan)*rate/12/(1-Math.pow(1+rate/12,-term*12));return mf(Math.round(p))+'/mo'})}
+    ${row('Payment at +2%',r=>{if(!r.moMortgage||r.key==='wait'||r.key==='rent')return'--';const k=r.key;const prop=k==='hdb'?st.hdb:st.privateHome;const uhl=prop.loanType==='hdb';const rate=(uhl?st.assumptions.hdbLoanRate:st.assumptions.bankRate)+0.02;const term=uhl?st.assumptions.hdbLoanTermYears:st.assumptions.bankLoanTermYears;const ltv=.75;const grantAmt=k==='hdb'?(prop.grant||0):0;const effP=Math.max(0,(prop.price||0)-grantAmt);const loan=effP*ltv;const p=Calc.n(loan)*rate/12/(1-Math.pow(1+rate/12,-term*12));return'<span style="color:var(--orange)">'+mf(Math.round(p))+'/mo</span>'})}
     ${sec('Projected wealth at '+hz+' years')}
     ${row('Total wealth',r=>r.feasible?'<strong>'+m(r.totalWealth)+'</strong>':'<span class="na">Not affordable</span>')}
     ${row('Liquid wealth',r=>{const ly=r.yearly&&r.yearly.length?r.yearly[r.yearly.length-1]:null;return ly?m(ly.portfolio+(r.cashProc||0)+(st.profile.emergencyReserve||0)):'--'})}
